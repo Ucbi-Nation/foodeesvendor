@@ -1,0 +1,98 @@
+ {% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+<link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+ <link rel="stylesheet" href="{% static 'js/bootstrap.min.css' %}">
+<script src="{% static 'js/ajax.js' %}"></script>
+<script src="{% static 'js/bootstrapjs.min.js' %}"></script>
+
+
+
+
+
+
+
+
+
+<div class="wrapper" style="background-image: url('{% static '' %}');">
+			<div class="inner">
+				<form action="{% url 'reg' %}" method="post">
+					{% csrf_token %}
+					<h3>Registration Form</h3>
+					 <div class="form-group">
+						 <div class="form-wrapper">
+							 <label form="">Username</label>
+	<input type="text" class="input-sm forms" name="username" id="username" placeholder="Login or Username" required="True" maxlength="40" onkeyup="check_login(this);return false;"
+		   data-url="{% url 'check_login' %}"/>
+	{% csrf_token %}
+
+<div class="" style="color:red;display:none;margin-top: 4px;"  id="login_not">
+	<span class="glyphicon glyphicon-remove"></span> Username already taken.
+</div>
+<div class="" style="color: green;display: none;margin-top: 4px;" id="login_ok">
+	<span class="glyphicon glyphicon-ok"></span> Username available.
+</div></div>
+
+
+					<div class="form-wrapper">
+						<label form="">Email</label>
+						<input type="email" name="email" class="forms">
+					</div>
+					</div>
+					<div class="form-wrapper">
+						<label form="">Password</label>
+						<input required type="password" id="password" name="password" minlength="5" class="forms">
+					</div>
+					<div class="form-wrapper">
+						<label form="">Confirm Password:</label>
+						<input required type="password" id="confirm_password" minlength="5" name="confirm_password" class="forms">
+					</div>
+					<div class="form-group">
+						<div class="form-wrapper">
+							<label form="">First Name</label>
+							<input required type="text" name="first_name" class="forms">
+						</div>
+						<div class="form-wrapper">
+							<label form="">Last Name</label>
+							<input type="text" name="last_name" class="forms">
+						</div>
+					</div>
+					<div class="form-wrapper">
+						<label form="">Phone Number:</label>
+						<input required type="text" name="phone_number" minlength="11" maxlength="11" class="forms">
+					</div>
+					{% for message in messages %}
+					<hk class="d-flex justify-content-center">{{ message }}</hk>
+					{% endfor %}
+
+					<div class="checkbox">
+						<label>
+							<input required type="checkbox"> I accept the Terms of Use & Privacy Policy.
+							<span class="checkmark"></span>
+						</label>
+					</div>
+					<button  class="buttonregis">Register Now</button>
+
+				</form>
+			</div>
+		</div>
+ <script>
+	 var password = document.getElementById("password")
+  , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+	confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+	confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+ </script>
+
+{% endblock content %}

@@ -1,0 +1,196 @@
+ {% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+ {% block title %}
+<title>Profile</title>
+{% endblock title %}
+
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+   <link rel="stylesheet" href="{% static 'dashboard/css/data-table/bootstrap-table.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/css/data-table/bootstrap-editable.css' %}">
+ <link rel="stylesheet" href="{% static 'dashboard/css/font-awesome.min.css' %}">
+<div class="user-profile-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="user-profile-wrap shadow-reset">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <div class="user-profile-img">
+                                                    <img src="{% static 'dashboard/img/notification/5.jpg' %}" alt="" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <div class="user-profile-content">
+                                                    {% if user.is_authenticated %}
+                                                    <h2 style="text-transform:capitalize">{{ request.user.username}}</h2>
+                                                    {% endif %}
+                                                    <p class="profile-founder">Joined on <strong>{{request.user.date_joined}}</strong>
+                                                    </p>
+                                                    <p class="profile-des">It is a long established fact that we are the best, that's why we make sure you come back with a smile.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="user-profile-social-list">
+                                            <table class="table small m-b-xs">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>{% if user.is_authenticated %}
+                                                     {{ count }}
+                                                    </strong> Total Order
+                                                        </td>
+                                                        <td>
+                                                            <strong>{{ cancelled }}</strong> Cancelled
+                                                        </td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>{{ complete }}</strong> Complete
+                                                        </td>
+                                                        <td>
+                                                            <strong>{{ ongoing }}</strong> Ongoing
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>{{ report }}</strong> Reports
+                                                        </td>
+                                                        <td>
+                                                            <strong>{{draft}}</strong> Draft
+                                                        </td>
+                                                    </tr>
+                                                </tbody>{% endif %}
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="analytics-sparkle-line user-profile-sparkline">
+                                            <div class="analytics-content">
+                                                <h5>Visits in last 24h</h5>
+                                                <h2 class="counter">498009</h2>
+                                                <div id="sparkline22"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-table-area mg-b-15">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="sparkline13-list shadow-reset">
+                                <div class="sparkline13-hd">
+                                    <div class="main-sparkline13-hd">
+                                        <h1>Order <span class="table-project-n"></span> Table</h1>
+                                        <div class="sparkline13-outline-icon">
+                                            <span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
+                                            <span><i class="fa fa-wrench"></i></span>
+                                            <span class="sparkline13-collapse-close"><i class="fa fa-times"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sparkline13-graph">
+                                    <div class="datatable-dashv1-list custom-datatable-overright">
+
+                                        <table id="table" data-toggle="table"  >
+                                            <thead>
+                                                <tr>
+                                                    <th data-field="state" data-checkbox="true"></th>
+                                                    <th data-field="company" data-editable="true">Order</th>
+                                                    <th data-field="price" data-editable="true">Price</th>
+                                                    <th data-field="email" data-editable="true">Address</th>
+                                                    <th data-field="side" data-editable="true">Side</th>
+                                                    <th data-field="delivery_fee" data-editable="true">Delivery Fee</th>
+                                                    <th data-field="Net_Total" data-editable="true">Net Total</th>
+                                                    <th data-field="phone" data-editable="true">Phone</th>
+                                                    <th data-field="task" data-editable="true">Order Code</th>
+                                                    <th data-field="date" data-editable="true">Date</th>
+                                                    <th data-field="complete">Completed</th>
+                                                    <th data-field="action">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                {% for contact in contacts %}
+                                                {# Each "contact" is a Contact model object. #}
+
+                                                          <tr>
+                                                    <td></td>
+                                                    <td>{{contact.detail}}</td>
+                                                    <td>&#8358;{{contact.total}}</td>
+                                                    <td>{{contact.address}}</td>
+                                                    <td>{{contact.side}}, {{contact.state}}</td>
+                                                    <td>&#8358;{{contact.deliveryfee}}</td>
+                                                    <td>&#8358;{{contact.Net_total}}</td>
+                                                    <td>{{contact.phone_number}}</td>
+                                                    <td>{{contact.code}}</td>
+                                                    <td>{{contact.date_added}}</td>
+                                                      {% if contact.status == 'Complete' %}
+                                                      <td class="datatable-ct"><i class="fa fa-check"></i>
+                                                    </td>
+                                                      {% else %}
+                                                      <td class="datatable-ct"><i style="color:red" class="fa fa-times"></i>
+                                                    </td>
+                                                      {% endif %}
+                                                      {% if contact.report == False %}
+                                                    <td class="datatable-ct">
+                                                         <form method="post" action="{% url 'profile' %}">
+                                                      {% csrf_token %}
+                                                          <input type="hidden" name="id" value="{{contact.id}}">
+                                                         <button type="submit" name="report" class="btn btn-warning">Make Report</button>
+                                                         </form>
+                                                    </td>
+                                                      {% elif contact.report == True %}
+                                                    <td class="datatable-ct">
+                                                      <button  class="btn btn-danger">Reported</button>
+                                                      </td>
+                                                      {% endif %}
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Static Table End -->
+  <!-- jquery
+		============================================ -->
+    <script src="{% static 'dashboard/js/vendor/jquery-1.11.3.min.js' %}"></script>
+    <!-- bootstrap JS
+		============================================ -->
+    <script src="{% static 'dashboard/js/bootstrap.min.js' %}"></script>
+    <!-- meanmenu JS
+		============================================ -->
+    <script src="{% static 'dashboard/js/sparkline/jquery.sparkline.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/sparkline/sparkline-active.js' %}"></script>
+    <!-- data table JS
+		============================================ -->
+<script src="{% static 'dashboard/js/data-table/bootstrap-table.js' %}"></script>
+    <script src="{% static 'dashboard/js/data-table/tableExport.js' %}"></script>
+    <script src="{% static 'dashboard/js/data-table/data-table-active.js' %}"></script>
+    <script src="{% static 'dashboard/js/data-table/bootstrap-table-editable.js' %}"></script>
+    <script src="{% static 'dashboard/js/data-table/bootstrap-editable.js' %}"></script>
+    <script src="{% static 'dashboard/js/data-table/bootstrap-table-resizable.js' %}"></script>
+    <script src="{% static 'dashboard/js/data-table/colResizable-1.5.source.js' %}"></script>
+    <script src="{% static 'dashboard/js/data-table/bootstrap-table-export.js' %}"></script>
+    <!-- main JS
+		============================================ -->
+    <script src="{% static 'dashboard/js/main.js' %}"></script>
+
+{% endblock content %}

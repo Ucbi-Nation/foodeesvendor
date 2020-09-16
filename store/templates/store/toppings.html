@@ -1,0 +1,134 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+{% block title %}
+<title>Cart</title>
+{% endblock title %}
+<div class="container">
+	<br>
+	<div class="row">
+		<div class="col-lg-12">
+
+
+ <style>
+				#droptxt {
+    padding: 8px;
+    width: 300px;
+    cursor: pointer;
+    box-sizing: border-box
+}
+.dropdown {
+    position: relative;
+    display: inline-block
+}
+.content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 290px;
+    overflow: auto;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
+    z-index: 1
+}
+.quantity {
+    float: right;
+    width: 40px
+}
+.content div {
+    padding: 10px 15px
+}
+.content div:hover {
+    background-color: #ddd
+}
+.show {
+	display: block
+}
+			</style>
+
+			<br>
+			<p>Click on the below text field:</p>
+<div class="dropdown">
+<input type="text" id="droptxt" class="list" readonly>
+    <div id="content" class="content">
+		{% for pro in products  %}
+
+               <div class="list">
+				   <input type="checkbox" id="{{pro.name}}" class="list" value="{{pro.name}}" />
+				   <img class="row-image" src="{{pro.imageURL}}">
+            <label for="{{pro.name}}" class="list">{{pro.name}} @ {{pro.price}} </label>
+            <input type="hidden" class="list quantity" min="1" value="0" />
+        </div>
+
+                {% endfor %}
+    </div>
+</div>
+			<script>
+	var txt = document.getElementById( 'droptxt' ),
+    content = document.getElementById( 'content' ),
+    list = document.querySelectorAll( '.content input[type="checkbox"]' ),
+    quantity = document.querySelectorAll( '.quantity' );
+
+txt.addEventListener( 'click', function() {
+    content.classList.toggle( 'show' )
+} )
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function( e ) {
+    if ( !e.target.matches( '.list' ) ) {
+        if ( content.classList.contains( 'show' ) ) content.classList.remove( 'show' )
+    }
+}
+
+list.forEach( function( item, index ) {
+    item.addEventListener( 'click', function() {
+        quantity[ index ].type = ( item.checked ) ? 'number' : 'hidden';
+        calc()
+    } )
+} )
+
+quantity.forEach( function( item ) {
+    item.addEventListener( 'input', calc )
+} )
+
+function calc() {
+    for ( var i = 0, arr = []; i < list.length; i++ ) {
+        if ( list[ i ].checked ) arr.push( quantity[ i ].value + ' x ' + list[ i ].value )
+    }
+
+    txt.value = arr.join( ', ' )
+}
+</script>
+			<br>
+			<div class="box-element">
+				<div class="cart-row">
+					<div style="flex:2"></div>
+					<div style="flex:2"><strong>Item</strong></div>
+					<div style="flex:1"><strong>Price</strong></div>
+					<div style="flex:1"><strong>Quantity</strong></div>
+					<div style="flex:1"><strong>Total</strong></div>
+				</div>
+				{% for item in products %}
+
+
+				<div class="cart-row">
+					<div style="flex:2"><img class="row-image" src="{{item.imageURL}}"></div>
+					<div style="flex:2"><p>{{item.name}}</p></div>
+					<div style="flex:1"><p>&#8358;{{item.price|floatformat:2}}</p></div>
+					<div style="flex:1">
+						<p class="quantity">{{item.quantity}}</p>
+						<div class="quantity">
+							<img data-product="{{item.id}}" data-action="add" class="chg-quantity update-cart" src="{% static  'images/arrow-up.png' %}">
+
+							<img data-product="{{item.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static  'images/arrow-down.png' %}">
+						</div>
+					</div>
+					<div style="flex:1"> </div>
+				</div>
+
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}

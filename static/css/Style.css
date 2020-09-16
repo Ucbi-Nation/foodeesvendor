@@ -1,0 +1,163 @@
+
+html, body{
+    margin: 0%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+:root{
+
+    /*      Theme colors        */
+    --text-gray: #3f4954;
+    --white: #ffffff;
+    --midnight: #104f55;
+	/* gradient color   */
+    /*      theme font-family   */
+    --Abel: 'Abel', cursive;
+    --Lexend: 'Lexend', cursive;
+    --Livvic : 'Livvic', cursive;
+	--box-shadow: 0px 10px 30px #DC9C45;
+}
+ /* ---------------- Global Classes ---------------*/
+
+a{
+    text-decoration: none;
+    color: var(--text-gray);
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+ul{
+    list-style-type: none;
+}
+
+
+.container{
+    margin: 0 5vw;
+}
+
+/* ------x------- Global Classes -------x-------*/
+
+/* --------------- navbar ----------------- */
+
+.nav{
+    background: white;
+    padding: 0 2rem;
+    height: 0rem;
+    min-height: 10vh;
+    overflow: hidden;
+    transition: height 1s ease-in-out;
+}
+
+.nav .nav-menu{
+    justify-content: space-between;
+}
+
+.nav .toggle-collapse{
+    position: absolute;
+    top: 0%;
+    width: 90%;
+    cursor: pointer;
+    display: none;
+}
+
+.nav .toggle-collapse .toggle-icons{
+    display: flex;
+    justify-content: flex-end;
+    padding: 1.7rem 0;
+}
+
+.nav .toggle-collapse .toggle-icons i{
+    font-size: 1.4rem;
+    color: var(--text-gray);
+}
+
+.collapse{
+    height: 35rem;
+}
+
+.nav .nav-items{
+    display: flex;
+    margin: 0;
+}
+
+.nav .nav-items .nav-link{
+    padding: 1.6rem 1rem;
+    font-size: 1.1rem;
+    position: relative;
+    font-family: Proxima Nova;
+    font-size: 1.1rem;
+}
+
+.nav .nav-items .nav-link:hover{
+	box-shadow: var(--box-shadow);
+    transform: scale(1.1);
+}
+
+.nav .nav-items .nav-link:hover a{
+    color:#A80E0E;
+}
+.nav .nav-brand img{
+    height:6vh;
+}
+.nav .nav-brand a{
+    font-size: 1.6rem;
+    padding: 1rem 0;
+    display: block;
+
+}
+
+.nav .social{
+    padding: 1.4rem 0;
+
+}
+
+.nav .social i{
+    padding: 0 .2rem;
+}
+
+.nav .social i:hover{
+    color: #a1c4cf;
+}
+
+main .site-title .site-background {
+text-align: center;
+font-size: 1.1rem;
+    position: relative;
+    font-family: var(--Abel);
+    font-size: 1.1rem;
+
+font-weight: normal;
+letter-spacing: 0.03em;
+line-height: 10px;
+text-align: center;
+color: #a80e0e;
+
+}
+
+
+@media only screen and (max-width: 750px){
+    .nav .nav-menu, .nav .nav-items{
+        flex-direction: column;
+    }
+
+    .nav .toggle-collapse{
+        display: initial;
+    }
+
+}
+
+
+@media only screen and (max-width: 520px){
+
+    nav .toggle-collapse{
+        width: 80% !important;
+    }
+
+}
+
+/*        x      Viewport less then or equal to 520px       x     */

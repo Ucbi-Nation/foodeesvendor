@@ -1,0 +1,443 @@
+{% load static %}
+<html>
+<head>
+
+
+<!--card-->
+		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+     <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+<!--card-->
+
+<link rel='stylesheet' href="{% static 'css/slick.min.css' %}">
+<link rel='stylesheet' href="{% static 'css/slick-theme.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/style2.css' %}">
+ <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+<script src="{% static 'js/ajax.js' %}"></script>
+
+
+    <script type="text/javascript">
+		var user = '{{request.user}}'
+
+		function getToken(name) {
+		    var cookieValue = null;
+		    if (document.cookie && document.cookie !== '') {
+		        var cookies = document.cookie.split(';');
+		        for (var i = 0; i < cookies.length; i++) {
+		            var cookie = cookies[i].trim();
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		var csrftoken = getToken('csrftoken')
+
+		function getCookie(name) {
+		    // Split cookie string and get all individual name=value pairs in an array
+		    var cookieArr = document.cookie.split(";");
+
+		    // Loop through the array elements
+		    for(var i = 0; i < cookieArr.length; i++) {
+		        var cookiePair = cookieArr[i].split("=");
+
+		        /* Removing whitespace at the beginning of the cookie name
+		        and compare it with the given string */
+		        if(name == cookiePair[0].trim()) {
+		            // Decode the cookie value and return
+		            return decodeURIComponent(cookiePair[1]);
+		        }
+		    }
+
+		    // Return null if not found
+		    return null;
+		}
+		var cart = JSON.parse(getCookie('cart'))
+
+		if (cart == undefined){
+			cart = {}
+			console.log('Cart Created!', cart)
+			document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+		}
+		console.log('Cart:', cart)
+
+	</script>
+
+<script>
+function check_login(element) {
+	$("#login_ok").hide();
+	$("#login_not").hide();
+	$("#login_length").hide();
+	login = $(element).val();
+	if (login == "") {
+		return;
+	}
+	else if (login.length < 4) {
+		$("#login_length").show();
+		return;
+	}
+	$.ajax({
+		url : $(element).attr("data-url"),
+		data : {
+			"csrfmiddlewaretoken" : $(element).siblings("input[name='csrfmiddlewaretoken']" ).val(),
+			"login":login
+		},
+		method: "POST",
+		dataType : "json",
+		success : function (data) {
+			//console.log(data);
+			if (data.is_success) {
+				$("#login_ok").show();
+			} else {
+				$("#login_not").show();
+			}
+		}
+	});
+}
+
+
+</script>
+
+
+</head>
+<body>
+<header class="header_area">
+        <div class="main-menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="/"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="mr-auto"></div>
+                    <ul class="navbar-nav">
+                        <li class="nav-item {% block hactive %} {% endblock hactive %}">
+                            <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item {% block mactive %} {% endblock mactive %}">
+                            <a class="nav-link" href="{% url 'store' %}">menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'signuped' %}">Vendor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}#testimonials">testimonials</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}#contacts">contact</a>
+                        </li>
+                    </ul>
+
+					<div class="form-inline nvd my-2 my-lg-0">
+						{% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}" > <img  id="profile-icon" src="{% static 'img/profile.svg' %}"></a>
+                        <a href="{% url 'cart' %}">
+	    		<img  id="cart-icon" src="{% static 'img/cart.svg' %}">
+	    	</a>
+	    	<p id="cart-total">{{cartItems}}</p>
+	     			<a href="{% url 'logout' %}"class="btn btn-warning logout">Logout</a>
+						{% else %}
+                        <a href="{% url 'cart' %}">
+	    		<img  id="cart-icon" src="{% static 'img/cart.svg' %}">
+	    	</a>
+	    	<p id="cart-total">{{cartItems}}</p>
+                        <span class="nav-item active">
+						<a href="{% url 'signup' %}" class="nav-link">Sign Up</a>
+                        </span>
+			<a href="{% url 'logs' %}" class="btn btn-warning">Login</a>
+						{%  endif %}
+            </div>
+                </div>
+            </nav>
+        </div>
+</header>
+
+
+
+
+
+
+
+
+<div class="wrapper" style="">
+			<div class="inner">
+				<form action="{% url 'signup' %}" method="post">
+					{% csrf_token %}
+					<h3>Registration Form</h3>
+					 <div class="form-group">
+						 <div class="form-wrapper">
+							 <label form="">Username</label>
+<span class="">
+    <input type="text" class="input-sm forms" name="username" id="login" minlength="4" required="True" maxlength="40" onkeyup="check_login(this);return false;"
+           data-url="{% url "check_login" %}"/>
+    {% csrf_token %}
+</span>
+<span style="color:red;display:none;margin-top: 4px;"  id="login_not">
+    <span class="glyphicon glyphicon-remove"></span> Username already taken.
+</span>
+ <span style="color:red;display:none;margin-top: 4px;"  id="login_length">
+    <span class="glyphicon glyphicon-remove"></span> Username minimum length is 4
+</span>
+<span style="color: green;display: none;margin-top: 4px;" id="login_ok">
+    <span class="glyphicon glyphicon-ok"></span> Username available.
+</span>
+                         </div>
+
+
+					<div class="form-wrapper">
+						<label form="">Email</label>
+						<input type="email" name="email" class="forms">
+					</div>
+					</div>
+					<div class="form-wrapper">
+						<label form="">Password</label>
+						<input required type="password" id="password" name="password" minlength="5" class="forms">
+					</div>
+					<div class="form-wrapper">
+						<label form="">Confirm Password:</label>
+						<input required type="password" id="confirm_password" minlength="5" name="confirm_password" class="forms">
+					</div>
+					<div class="form-group">
+						<div class="form-wrapper">
+							<label form="">First Name</label>
+							<input required type="text" name="first_name" class="forms">
+						</div>
+						<div class="form-wrapper">
+							<label form="">Last Name</label>
+							<input type="text" name="last_name" class="forms">
+						</div>
+					</div>
+					<div class="form-wrapper">
+						<label form="">Phone Number:</label>
+						<input required type="text" name="phone_number" minlength="11" maxlength="11" class="forms">
+					</div>
+                    <div class="checkbox">
+						<label>
+							<input required type="checkbox"> I accept the Terms of Use & Privacy Policy.
+							<span class="checkmark"></span>
+						</label>
+					</div>
+					{% for message in messages %}
+        			<hk class="d-flex justify-content-center" style="color:red;">{{ message }}</hk>
+        			{% endfor %}
+
+
+					<button  class="buttonregis">Register Now</button>
+
+				</form>
+			</div>
+		</div>
+ <script>
+	 var password = document.getElementById("password")
+  , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+ </script>
+
+ <section id="" class="boxx">
+                            <div class="container-fluid">
+                                <div class="row ">
+                                <div class="b-list">
+                                <div class="container services-list">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="box">
+                                                <div class="box-img text-center py-4">
+                                                    <img src="{% static '/img/food.svg' %}" alt="Services-1">
+                                                </div>
+
+                                                <div class="text-center">
+                                                    <h4 class="box-title">Variety of <br> dishes</h4>
+
+                                                </div>
+                                                <div class="line text-center"></div>
+                                                <div class="box-text text-center">
+                                                    <h4 class="card-title ">In our menu you’ll find a wide variety of dishes,
+                                                    desserts, and drinks.</h4>
+
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="box">
+
+                                                <div class="box-img text-center py-4">
+                                                    <img src="{% static './img/30mini.svg' %}" alt="Services-1">
+                                                </div>
+
+                                                <div class="text-center">
+                                                    <h4 class="box-title ">30 minutes <br> deliver</h4>
+
+                                                </div>
+                                                <div class="line text-center"></div>
+                                                <div class="box-text text-center">
+                                                    <h4 class="card-title ">Everything you order will be quickly delivered to your door.</h4>
+
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="box">
+
+                                                <div class="box-img text-center py-4">
+                                                    <img src="{% static './img/chef.svg' %}" alt="Services-1">
+                                                </div>
+
+                                                <div class="text-center">
+                                                    <h4 class="box-title">Free shipping on <br> first order</h4>
+
+                                                </div>
+                                                <div class="line text-center"></div>
+                                                <div class="box-text text-center">
+                                                    <h4 class="card-title">Sign up for updates and get free shipping</h4>
+
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="box">
+
+                                                <div class="box-img text-center py-4">
+                                                    <img src="{% static './img/bread.svg' %}" alt="Services-1">
+                                                </div>
+
+                                                <div class="text-center">
+                                                    <h4 class="box-title">Best quality <br> guarantee</h4>
+
+                                                </div>
+                                                <div class="line text-center"></div>
+                                                <div class="box-text text-center">
+                                                    <h4 class="card-title ">Everything you order will be quickly delivered to your door.</h4>
+
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                </section>
+
+<footer class="footer">
+        <div class="container-fluid">
+          <div class="row justify-content-center row-30">
+            <div class="col-md-10 col-lg-12 col-xl-4" style="visibility: visible; animation-name: fadeInRight;">
+              <div class="foots">
+                <div class="footer-image"><a href="{% url 'index' %}">
+				<img src="{% static 'img/logo.svg' %}" alt="" width="191" height="52"></a>
+				</div>
+                <p class="text-width-medium our">Our company has been delivering delicious food and drinks since 2019. We have renowned professionals who makes sure its gets to your door-step.</p>
+                 <div>
+				  <h4 class="footer-address"><img src="{% static './img/telephone.svg' %}" style="float:left" width="40" height="40">08102186232<br>08102186232</h4>
+				 <br><br>
+				 <h4 class="footer-address"><img src="{% static './img/clock.svg' %}" style="float:left" width="40" height="40">mon-sat:9:00am-7pm | <br>sun: 12.00 – 7pm</h4>
+				 <br><br>
+
+				 <h4 class="footer-address"><img src="{% static './img/location.svg' %}" style="float:left" width="40" height="40">24/40 Chime Avenue,<br> New Heaven Enugu.</h4>
+				 <br>
+				 </div>
+				 <br>
+                <ul class="footer-table" id="contacts">
+                  <li><a class="" href="https://wa.me/2348102186232" target="_blank"><img src="{% static './img/whatsapp.svg' %}"></a></li>
+                  <li><a class="" href="https://instagram.com/foodeesplug" target="_blank"><img src="{% static './img/instagram.svg' %}"></a></li>
+                  <li><a class="" href="#"><img src="{% static './img/twitter.svg' %}"></a></li>
+                  <li><a class="" href="#"><img src="{% static './img/facebook.svg' %}"></a></li>
+                </ul>
+              </div>
+            </div>
+
+
+			<div class="col-md-10 col-lg-6 col-xl-4">
+			<h2 class="footer-title">Usefull Links</h2>
+
+				  <img class="footer-brush" src="{% static './img/Brush.svg' %}">
+			<table style="width:100%">
+			<tr>
+			<th></th>
+			<th></th>
+			</tr>
+			<tr>
+                <td><a href="{% url 'index' %}">Home</a></td>
+                <td><a href="{% url 'store' %}">Menu</a></td>
+			</tr>
+			<tr>
+
+                <td><a href="{% url 'index' %}#testimonials">Testimonials</a></td>
+                <td><a href="{% url 'store' %}">Contact</a></td>
+			</tr>
+			<tr>
+                <td><a href="{% url 'store' %}">Order Now</a></td>
+                <td><a href="{% url 'store' %}">Services</a></td>
+			</tr>
+
+			</table>
+            <img class="footer-brush" width="90%" style="margin-top:30px" src="{% static './img/paystack.png' %}">
+			</div>
+			<div class="col-md-10 col-lg-6 col-xl-4" >
+
+			<h2 class="footer-title">Instagram Posts</h2>
+
+				  <img class="footer-brush" src="{% static './img/Brush.svg' %}">
+
+
+			</div>
+
+          </div>
+        </div>
+        <div class="container footer-bottom-panel wow fadeInUp text-center" style="visibility: visible; animation-name: fadeInUp;">
+          <!-- Rights-->
+          <p class="rights"><span>©&nbsp;</span><span class="copyright-year">2020</span> <span>UCBI_NATION</span>. All rights reserved. <a href="{% static './img/privacy.txt' %}"> Privacy Policy.</a>
+          </p>
+        </div>
+      </footer>
+
+
+	<!-- Jquery Library file -->
+    <script src="{% static './js/Jquery3.4.1.min.js' %}"></script>
+<script src="{% static './js/bootstrap.min.js' %}"></script>
+    <!-- --------- Owl-Carousel js ------------------->
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/classnames/2.2.5/index.min.js'></script>
+<script  src="{% static './js/slide.js' %}"></script>
+    <!-- Custom Javascript file -->
+
+    <script src="{% static './js/main.js' %}"></script>
+
+	<!--card script -->
+ <script src="{% static 'jquery.min.js' %}"></script>
+<script src="{% static './js/slick.min.js' %}"></script>
+<script  src="{% static './js/script.js' %}"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+	<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+</body>
+</html>
+
+    <script src="{% static './js/Jquery3.4.1.min.js' %}"></script>
+<script src="{% static './js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+
+</body>
+
+</html>

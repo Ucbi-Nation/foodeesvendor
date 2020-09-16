@@ -1,0 +1,652 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block vactive %}
+    active
+{% endblock vactive %}
+
+{% block content %}
+{% block title %}
+<title>Foodeesplug.com|{{product.name}}</title>
+{% endblock title %}
+
+
+
+
+
+	<!-- Animate.css --><link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+
+
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="{% static 'css/stylep.css' %}">
+
+
+		<div class="shop">
+			<div class="container">
+				<div class="row row-pb-lg">
+					<div class="col-md-10 col-md-offset-1">
+						<div class="product-detail-wrap">
+							<div class="row">
+								<div class="col-md-5">
+									<div class="product-entry">
+
+										<div class="product-img" style="background-image: url({{product.imageURL}});">
+											<p class="tag"><span class="sale">Sale</span></p>
+										</div>
+										<div class="thumb-nail">
+											{% for pro in vendor_product %}
+											<a href="/product/{{pro.id}}/{{pro.name|slugify}}" class="thumb-img" style="background-image: url({{pro.imageURL}});"></a>
+						{% endfor %}
+										</div>
+									</div>
+								</div>
+								<div class="col-md-7">
+									<div class="desc">
+										<h3>{{product.name}}</h3>
+										<p class="price">
+											 <span style="color:#A80E0E;">&#8358;{{product.price}} <i class="icon-cent"></i></span>
+											<span class="rate text-right">
+												 <a href="#" class="reply"><i class="icon-like"></i></a>
+												<br>
+												<i class="icon-star-full"></i>
+												<i class="icon-star-full"></i>
+												<i class="icon-star-full"></i>
+												<i class="icon-star-full"></i>
+												<i class="icon-star-half"></i>
+												(74 Rating)
+											</span>
+
+										</p>
+										<p>{{product.desc}}</p>
+
+										<div class="size-wrap">
+											<p class="size-desc">
+												<style>
+													.icon-check{
+													color:#A80E0E;
+													}
+												</style>
+												Available:
+													{% if product.available is True  %}
+												<i class="icon-check"></i>
+												{% else  %}
+												<i class="icon-times">s</i>
+												{% endif %}
+											</p>
+										</div>
+										{% for item in items %}
+										{% if item.product.id is profileid %}
+										<div class="row row-pb-sm">
+											<div class="col-md-4">
+                                    <div class="input-group">
+                                    	<span class="input-group-btn">
+                                       	<button type="button" class="quantity-left-minus btn update-cart" data-product="{{item.product.id}}" data-action="remove">
+                                          <i class="icon-minus2"></i>
+                                       	</button>
+                                   		</span>
+                                    	<input type="text" id="quantity" name="quantity" class="form-control input-number" value="{{item.quantity}}" min="1" max="100">
+                                    	<span class="input-group-btn">
+                                       	<button type="button" class="quantity-right-plus btn update-cart" data-product="{{product.id}}" data-action="add">
+                                            <i class="icon-plus2"></i>
+                                        </button>
+                                    	</span>
+                                 	</div>
+                        			</div>
+										</div>
+											{% endif %}
+											{% endfor %}
+										<p class="addtocartprofile"><a  data-product="{{product.id}}" data-action="add"  class="btn btn-addtocart add-btn update-cart"><i class="icon-shopping-cart"></i> Add to Cart</a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1">
+						<div class="row">
+							<div class="col-md-12 tabulation">
+								<ul class="nav nav-tabs">
+									<li><a data-toggle="tab" href="#description">Recipe</a></li>
+									<li><a data-toggle="tab" href="#profile">Vendor</a></li>
+									<li class="active"><a data-toggle="tab" href="#review">Reviews</a></li>
+								</ul>
+								<div class="tab-content">
+									<div id="description" class="tab-pane fade">
+
+						         </div>
+						         <div id="profile" class="tab-pane fade">
+									 <div class="review">
+										   		<div class="user-img" style="background-image: url({{pics.imageURL}})"></div>
+										   		<div class="desc">
+										   			<h4>
+										   				<span class="text-left">{{pics.first_name}} {{pics.last_name}}</span>
+										   				<span class="text-right">Joined on {{pics.date_added.date}}</span>
+										   			</h4>
+													<p><span class="text-left">Ceo of {{pics.username}} </span> </p>
+										   			<p class="star">
+										   				<span>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-half"></i>
+										   					<i class="icon-star-empty"></i>
+									   					</span>
+									   					<span class="text-right"><a href="#" class="reply"><i class="icon-like"></i></a></span>
+										   			</p>
+
+										   		</div>
+										   	</div>
+	<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+
+
+								   </div>
+								   <div id="review" class="tab-pane fade in active">
+								   	<div class="row">
+								   		<div class="col-md-7">
+											{% if comment_no == 1 or comment_no == 0 %}
+											<h3>{{comment_no}} Review</h3>
+											{% else %}
+											<h3>{{comment_no}} Reviews</h3>
+											{% endif %}
+
+											{% for rs in comments %}
+
+										   	<div class="review">
+										   		<div class="user-img" style="background-image: url({{ rs.product.profile_image }})"></div>
+										   		<div class="desc">
+										   			<h4>
+										   				<span class="text-left">{{ rs.user.username }}</span>
+										   				<span class="text-right">{{ rs.create_at }}</span>
+										   			</h4>
+										   			<p class="star">
+										   				<span>
+
+															{% if rs.rate == 1.0 %}
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-empty"></i>
+										   					<i class="icon-star-empty"></i>
+										   					<i class="icon-star-empty"></i>
+										   					<i class="icon-star-empty"></i>
+															{% elif rs.rate == 1.5 %}
+															<i class="icon-star-full"></i>
+										   					<i class="icon-star-half"></i>
+										   					<i class="icon-star-empty"></i>
+										   					<i class="icon-star-empty"></i>
+										   					<i class="icon-star-empty"></i>
+															{% elif rs.rate == 2.0 %}
+															<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-empty"></i>
+										   					<i class="icon-star-empty"></i>
+										   					<i class="icon-star-empty"></i>
+															{% elif rs.rate == 2.5 %}
+															<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-half"></i>
+										   					<i class="icon-star-empty"></i>
+										   					<i class="icon-star-empty"></i>
+															{% elif rs.rate == 3.0 %}
+															<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-empty"></i>
+										   					<i class="icon-star-empty"></i>
+															{% elif rs.rate == 3.5 %}
+															<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-half"></i>
+										   					<i class="icon-star-empty"></i>
+															{% elif rs.rate == 4.0 %}
+															<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-empty"></i>
+															{% elif rs.rate == 4.5 %}
+															<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-half"></i>
+															{% elif rs.rate == 5.0 %}
+															<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+										   					<i class="icon-star-full"></i>
+															{% endif %}
+															</span>
+									   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+										   			</p>
+										   			<p>{{ rs.comment }}</p>
+										   		</div>
+										   	</div>
+											{% endfor %}
+
+											<hr>
+											<style>
+						.section-title {
+					  color: #000;
+					  margin-bottom: 50px; }
+					  .section-title h2 {
+						font-size: 20px;
+						font-weight: 400;
+						border-bottom: 1px solid #222;
+						position: relative;
+						display: inline-block; }
+						.section-title h2:before {
+						  position: absolute;
+						  content: "";
+						  height: 1px;
+						  background: #777; }
+						  .form-control:hover, .form-control:focus, .form-control:active {
+					  outline: none;
+					  -webkit-box-shadow: none;
+					  box-shadow: none; }
+					  .form-control {
+					  margin-right: 10px;
+					  height: 50px;
+					  padding-left: 20px;
+					  padding-right: 20px;
+					  border-radius: 30px;
+					  border: none;
+					  background: #fff;
+					  border-bottom: 1px solid transparent;
+					  border-bottom: 1px solid #ccc; }
+					  .form-control:active, .form-control:focus {
+						border-bottom: 1px solid #ccc; }
+
+
+
+button {
+	outline: none !important;
+	border: none;
+	background: transparent;
+}
+
+button:hover {
+	cursor: pointer;
+}
+.wrap-login100-form-btn {
+  width: 70%;
+  display: block;
+  position: relative;
+  z-index: 1;
+  border-radius: 25px;
+  overflow: hidden;
+  margin: 0 auto;
+
+}
+
+.login100-form-bgbtn {
+  position: absolute;
+  z-index: -1;
+  width: 300%;
+  height: 100%;
+  background: #ae3c33;
+  background: -webkit-linear-gradient(right, #ae3c33, #b721ff, #ae3c33, #b721ff);
+  background: -o-linear-gradient(right, #ae3c33, #DC9C45, #ae3c33, #DC9C45);
+  background: -moz-linear-gradient(right, #ae3c33, #DC9C45, #ae3c33, #DC9C45);
+  background: linear-gradient(right, #ae3c33, #DC9C45, #ae3c33, #DC9C45);
+  top: 0;
+  left: -100%;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.login100-form-btn {
+  font-family: Poppins-Medium;
+  font-size: 15px;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: uppercase;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  height: 50px;
+}
+
+.wrap-login100-form-btn:hover .login100-form-bgbtn {
+  left: 0;
+}
+					</style>
+				<div class="comment-form-wrap pt-5">
+                      <div class="section-title">
+                        <h2 class="">Leave a comment</h2>
+                      </div>
+                      <form action="/product/addcomment/{{ product.id }}" class="p-5 bg-light" method="post">
+                                        {% csrf_token %}
+
+                        <div class="form-group">
+
+                          <input type="text" class="form-control" name="subject" id="name" hidden>
+                        </div>
+
+
+                        <div class="form-group">
+                          <label  style="margin-bottom:5px;" for="message">Comment *</label>
+                          <textarea name="comment" id="message" cols="30" rows="10" class="form-control"></textarea>
+                        </div>
+						  <div class="form-group">
+                                            <div class="input-rating">
+								<strong class="text-uppercase">Your Rating: </strong>
+
+							</div>
+							</div>
+
+									 <style>
+										 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+												fieldset, label { margin: 0; padding: 0; }
+												body{ margin: 20px; }
+												h1 { font-size: 1.5em; margin: 10px; }
+
+												/****** Style Star Rating Widget *****/
+
+												.rating {
+												  border: none;
+												  float: left;
+												}
+
+												.rating > input { display: none; }
+												.rating > label:before {
+												  margin: 5px;
+												  font-size: 1.25em;
+												  font-family: FontAwesome;
+												  display: inline-block;
+												  content: "\f005";
+												}
+
+												.rating > .half:before {
+												  content: "\f089";
+												  position: absolute;
+												}
+
+												.rating > label {
+												  color: #ddd;
+												 float: right;
+												}
+
+												/***** CSS Magic to Highlight Stars on Hover *****/
+
+												.rating > input:checked ~ label, /* show gold star when clicked */
+												.rating:not(:checked) > label:hover, /* hover current star */
+												.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+												.rating > input:checked + label:hover, /* hover current star when changing rating */
+												.rating > input:checked ~ label:hover,
+												.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+												.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+									 </style>
+						  <div>
+								<fieldset class="rating">
+									<input type="radio" id="star5" name="rate" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+									<input type="radio" id="star4half" name="rate" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+									<input type="radio" id="star4" name="rate" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+									<input type="radio" id="star3half" name="rate" value="3.5" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+									<input type="radio" id="star3" name="rate" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+									<input type="radio" id="star2half" name="rate" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+									<input type="radio" id="star2" name="rate" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+									<input type="radio" id="star1half" name="rate" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+									<input type="radio" id="star1" name="rate" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+									<input type="radio" id="starhalf" name="rate" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+								</fieldset>
+						  </div>
+						  <br>
+						  <br>
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div class="alert alert-{{message.tags}}" role="alert">
+												<p> {{ message }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+						  {% if user.id is not None %}
+							<div class="container-login100-form-btn">
+								<div class="wrap-login100-form-btn">
+									<div class="login100-form-bgbtn"></div>
+									<button class="login100-form-btn">
+										POST COMMENT
+									</button>
+								</div>
+							</div>
+						{% else %}
+						<span>You must be logged in to post a review</span>
+						{% endif %}
+ 				      </form>
+                    </div>
+
+								   		</div>
+								   		<div class="col-md-4 col-md-push-1">
+								   			<div class="rating-wrap">
+									   			<h3>Give a Review</h3>
+									   			<p class="star">
+									   				<span>
+									   					<i class="icon-star-full"></i>
+									   					<i class="icon-star-full"></i>
+									   					<i class="icon-star-full"></i>
+									   					<i class="icon-star-full"></i>
+									   					<i class="icon-star-full"></i>
+									   					(100%)
+								   					</span>
+								   					<span>20 Reviews</span>
+									   			</p>
+									   			<p class="star">
+									   				<span>
+									   					<i class="icon-star-full"></i>
+									   					<i class="icon-star-full"></i>
+									   					<i class="icon-star-full"></i>
+									   					<i class="icon-star-full"></i>
+									   					<i class="icon-star-empty"></i>
+									   					(80%)
+								   					</span>
+								   					<span>10 Reviews</span>
+									   			</p>
+									   			<p class="star">
+									   				<span>
+									   					<i class="icon-star-full"></i>
+									   					<i class="icon-star-full"></i>
+									   					<i class="icon-star-full"></i>
+									   					<i class="icon-star-empty"></i>
+									   					<i class="icon-star-empty"></i>
+									   					(60%)
+								   					</span>
+								   					<span>5 Reviews</span>
+									   			</p>
+									   			<p class="star">
+									   				<span>
+									   					<i class="icon-star-full"></i>
+									   					<i class="icon-star-full"></i>
+									   					<i class="icon-star-empty"></i>
+									   					<i class="icon-star-empty"></i>
+									   					<i class="icon-star-empty"></i>
+									   					(40%)
+								   					</span>
+								   					<span>0 Reviews</span>
+									   			</p>
+									   			<p class="star">
+									   				<span>
+									   					<i class="icon-star-full"></i>
+									   					<i class="icon-star-empty"></i>
+									   					<i class="icon-star-empty"></i>
+									   					<i class="icon-star-empty"></i>
+									   					<i class="icon-star-empty"></i>
+									   					(20%)
+								   					</span>
+								   					<span>0 Reviews</span>
+									   			</p>
+									   		</div>
+								   		</div>
+								   	</div>
+								   </div>
+					         </div>
+				         </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="shop">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3 text-center heading">
+						<h2><span>Popular Products</span></h2>
+						 <img class="brushes" style="margin-top:-30px;" width="300px" src="{% static './img/Brush.svg' %}">
+						<p>We love to tell our successful far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+					</div>
+				</div>
+				<div class="row">
+					{% for pro in popular_product %}
+					<div class="col-md-3 text-center">
+						<div class="product-entry">
+							<div class="product-img" style="background-image: url({{pro.imageURL}});">
+								<p class="tag"><span class="new">New</span></p>
+								<div class="cart">
+									<p>
+										<span class="addtocart"><a ><i class="icon-shopping-cart update-cart" data-product="{{pro.id}}" data-action="add"></i></a></span>
+										<span><a href="/product/{{pro.id}}/{{pro.name|slugify}}"><i class="icon-eye"></i></a></span>
+										<span><a href="#"><i class="icon-heart3"></i></a></span>
+										<span><a href="#"><i class="icon-bar-chart"></i></a></span>
+									</p>
+								</div>
+							</div>
+							<div class="desc">
+								<h3><a href="shop.html">{{pro.name}}</a></h3>
+								<p class="price"><span>&#8358; {{pro.price}} </span></p>
+							</div>
+						</div>
+					</div>
+						{% endfor %}
+				</div>
+			</div>
+		</div>
+
+<style>
+
+#subscribe {
+  background: #F9B826;
+  position: relative;
+  padding: 3em; }
+  #subscribe h2 {
+    font-size: 24px;
+    margin-top: 10px; }
+    #subscribe h2 i {
+      padding-right: 20px; }
+
+.qbstp-header-subscribe .form-group {
+  position: relative;
+  width: 100%; }
+  @media screen and (max-width: 480px) {
+    .qbstp-header-subscribe .form-group {
+      width: 100%; } }
+  .qbstp-header-subscribe .form-group input::-webkit-input-placeholder {
+    color: #333333; }
+  .qbstp-header-subscribe .form-group input::-moz-input-placeholder {
+    color: #333333; }
+  .qbstp-header-subscribe .form-group input::-ms-input-placeholder {
+    color: #333333; }
+  .qbstp-header-subscribe .form-group input::-o-input-placeholder {
+    color: #333333; }
+  .qbstp-header-subscribe .form-group input::input-placeholder {
+    color: #333333; }
+
+.qbstp-header-subscribe #email {
+  font-size: 18px;
+  width: 100%;
+  padding-right: 3em;
+  border: none;
+  border: 2px solid #fff;
+  background: #fff;
+  color: #333333 !important;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  border-radius: 30px; }
+
+.qbstp-header-subscribe button {
+  position: absolute;
+  top: 0;
+  right: -4px;
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  background: #A80E0E;
+  color: #fff;
+  border: none;
+  padding: 14px; }
+  .btn {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: 400;
+
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  padding: 8px 20px; }
+  .btn.btn-md {
+    padding: 8px 20px !important; }
+  .btn.btn-lg {
+    padding: 18px 36px !important; }
+  .btn:hover, .btn:active, .btn:focus {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline: none !important; }
+
+.btn-primary {
+  background: #FFC300;
+  color: #fff;
+  border: 1px solid #FFC300; }
+  .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background: #000; !important;
+    border-color: #000; !important; }
+  .btn-primary.btn-outline {
+    background: transparent;
+    color: #000;
+    border: 1px solid #FFC300; }
+    .btn-primary.btn-outline:hover, .btn-primary.btn-outline:focus, .btn-primary.btn-outline:active {
+      background: #FFC300;
+      color: #fff; }
+</style>
+
+
+
+
+
+
+
+	<!-- jQuery -->
+	<script src="{% static 'js/jqueryp.min.js' %}"></script>
+
+	<script src="{% static 'js/bootstrap.js' %}"></script>
+	<script src="{% static 'js/mainp.js' %}"></script>
+
+
+
+
+ {% endblock content %}

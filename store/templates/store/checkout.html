@@ -1,0 +1,282 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+{% block title %}
+<title>Checkout</title>
+{% endblock title %}
+<style>
+h2{
+font-size:24px;}
+h3{
+font-size:20px;}
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+<section>
+	<div class="container">
+            <br>
+     <div class="row">
+				<div class="col-lg-6">
+					<div class="box-element" id="form-wrapper">
+						<form id="form">
+							{% if user.is_authenticated %}
+							<div id="user-info">
+								<div class="form-field">
+									<input required readonly hidden class="form-control" id="name" type="text" name="name" value="{{ user.username}}">
+								</div>
+								<div class="form-field">
+									<input required readonly hidden class="form-control" id="email" type="email" name="email" value="{{ user.email }}">
+								</div>
+							</div>
+							{% else %}
+							<div id="user-info">
+								<div class="form-field">
+									<input required class="form-control" id="name" type="text" name="name" placeholder="Name..">
+								</div>
+								<div class="form-field">
+									<input required class="form-control" id="email" type="email" name="email" placeholder="Email..">
+								</div>
+							</div>
+							{% endif %}
+
+							<div id="shipping-info">
+								<hr>
+								<p>Shipping Information:</p>
+								<hr>
+								<div class="form-field">
+									<input class="form-control" required type="text" name="address" placeholder="Address..">
+								</div>
+								<div class="form-field">
+									<input class="form-control" type="text" name="side" required value="{{delivery.side}}" readonly>
+								</div>
+								<div class="form-field">
+									<input class="form-control" type="text" name="state" required value="{{delivery.state}}" readonly>
+								</div>
+								<div class="form-field">
+									<input class="form-control" type="text" required name="code" value="{{code}}" readonly>
+								</div>
+								<div class="form-field">
+									{% if phone_number == None %}
+									<input class="form-control" type="text" value="" name="phone_number" minlength="11" maxlength="11" required placeholder="Enter your phone number">
+									{% else %}
+									<input class="form-control" type="text" value="{{phone_number}}" id="phone_number" minlength="11" maxlength="11" name="phone_number" required placeholder="Enter your phone number">
+									{% endif %}
+								</div>
+							</div>
+
+									<input class="form-control" type="text" name="info" value="{{delivery.info}}" hidden>
+									<input class="form-control" type="text" name="" id="amount" value="{{net_total}}" hidden>
+
+							<input class="form-control" type="text" required name="deliverycost" value="{{delivery.cost}}" hidden>
+							<hr>
+							<input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
+						</form>
+					</div>
+
+					<br>
+					<div class="box-element hidden" id="payment-info">
+						<h1 style="margin-top:10px;margin-bottom:5px;" class="brush-text">Payment Option</h1>
+						<div class="tab">
+		  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Bank Transfer</button>
+		  <button class="tablinks" onclick="openCity(event, 'Paris')">Pay Online</button>
+
+		</div>
+
+		<div id="London" class="tabcontent">
+			<h2>Pay using your Bank App,USSD or Bank Deposit before delivery.</h2>
+		  <br>
+			<h3> Account Name: Ude Chekwube Boniface</h3>
+		  <h3>First Bank - 3121911240</h3>
+			  <h3>Zenith Bank - 2250855144</h3>
+			<br>
+			<button class="btn btn-success" id="make-payment">Place Order</button>
+		</div>
+
+		<div id="Paris" class="tabcontent">
+		  <h3>Pay Online with our secure platform</h3>
+
+			<img class="footer-brush" width="90%" style="margin-top:20px;margin-bottom:20px;" src="{% static './img/paystack.png' %}">
+			<button class="btn btn-success" onclick="payWithPaystack()"> Make Payment </button>
+		</div>
+
+
+		<script>
+		function openCity(evt, cityName) {
+		  var i, tabcontent, tablinks;
+		  tabcontent = document.getElementsByClassName("tabcontent");
+		  for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		  }
+		  tablinks = document.getElementsByClassName("tablinks");
+		  for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		  }
+		  document.getElementById(cityName).style.display = "block";
+		  evt.currentTarget.className += " active";
+		}
+
+		// Get the element with id="defaultOpen" and click on it
+		document.getElementById("defaultOpen").click();
+		</script>
+					</div>
+
+
+				</div>
+
+		<div class="col-lg-6">
+			<div class="box-element">
+				<a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+				<hr>
+				<h3>Order Summary</h3>
+				<hr>
+				{% for item in items %}
+				<div class="cart-row">
+					<div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+					<div style="flex:2"><p>{{item.product.name}}</p></div>
+					<div style="flex:1"><p>${{item.product.price|floatformat:2}}</p></div>
+					<div style="flex:1"><p>x{{item.quantity}}</p></div>
+				</div>
+				{% endfor %}
+				<h5>Items:   {{order.get_cart_items}}</h5>
+				<h5>Cost of Items:   &#8358;{{order.get_cart_total|floatformat:2}}</h5>
+				<h5>Delivery Fee:   &#8358;{{delivery.cost}}</h5>
+				<h5>Total:   &#8358;{{net_total}} <span style="padding-left:4px"> <i class="fab fa-bitcoin"></i> {{net_total}}</span>
+                    <span style="padding-left:4px">  <i class="fab fa-ethereum"></i>  {{net_total}}</span> </h5>
+			</div>
+		</div>
+	</div>
+	</div>
+</section>
+
+
+
+	<script type="text/javascript">
+		var shipping = '{{order.shipping}}'
+		var total = '{{order.get_cart_total|floatformat:2}}'
+
+		if (shipping == 'False'){
+		 	document.getElementById('shipping-info').innerHTML = ''
+		}
+
+
+
+		if (shipping == 'False' && user != 'AnonymousUser'){
+			//Hide entire form if user is logged in and shipping is false
+				document.getElementById('form-wrapper').classList.add("hidden");
+				//Show payment if logged in user wants to buy an item that does not require shipping
+			    document.getElementById('payment-info').classList.remove("hidden");
+		}
+
+		var form = document.getElementById('form')
+		form.addEventListener('submit', function(e){
+	    	e.preventDefault()
+	    	console.log('Form Submitted...')
+	    	document.getElementById('form-button').classList.add("hidden");
+	    	document.getElementById('payment-info').classList.remove("hidden");
+	    })
+
+	    document.getElementById('make-payment').addEventListener('click', function(e){
+	    	submitFormData()
+	    })
+
+	    function submitFormData(){
+	    	console.log('Payment button clicked')
+
+	    	var userFormData = {
+				'name':null,
+				'email':null,
+				'total':total,
+			}
+
+			var shippingInfo = {
+				'address':null,
+				'side':null,
+				'state':null,
+				'code':null,
+				'info':null,
+				'deliverycost':null,
+				'phone_number':null,
+			}
+
+			if (shipping != 'False'){
+	    		shippingInfo.address = form.address.value
+		    	shippingInfo.side= form.side.value
+		    	shippingInfo.state = form.state.value
+		    	shippingInfo.code = form.code.value
+		    	shippingInfo.info = form.info.value
+		    	shippingInfo.deliverycost = form.deliverycost.value
+		    	shippingInfo.phone_number = form.phone_number.value
+	    	}
+
+	    	if (user == 'AnonymousUser'){
+	    		userFormData.name = form.name.value
+	    		userFormData.email = form.email.value
+	    	}
+
+	    	console.log('Shipping Info:', shippingInfo)
+	    	console.log('User Info:', userFormData)
+
+	    	var url = "/process_order/"
+	    	fetch(url, {
+	    		method:'POST',
+	    		headers:{
+	    			'Content-Type':'applicaiton/json',
+	    			'X-CSRFToken':csrftoken,
+	    		},
+	    		body:JSON.stringify({'form':userFormData, 'shipping':shippingInfo}),
+
+	    	})
+	    	.then((response) => response.json())
+	    	.then((data) => {
+				console.log('Success:', data);
+				alert('Transaction completed');
+
+				cart = {}
+				document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+
+				window.location.href = "{% url 'store' %}"
+
+				})
+	    }
+	</script>
+ <script src="https://js.paystack.co/v1/inline.js"></script>
+ <script src="{% static './js/pay.js' %}"></script>
+<script src="https://kit.fontawesome.com/74ca4390bb.js" crossorigin="anonymous"></script>
+{% endblock content %}
+
+
+

@@ -1,0 +1,336 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block hactive %}
+    active
+{% endblock hactive %}
+
+{% block content %}
+{% block title %}
+<title>Home</title>
+{% endblock title %}
+<script src="https://kit.fontawesome.com/74ca4390bb.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+  <section>
+ <!-- partial:index.partial.html -->
+<div id="app"></div>
+<a href="https://instagram.com/foodeesplug" target="_blank" class="icon-link">
+  <img src="{% static './img/instagram.svg' %}">
+</a>
+
+
+<a href="https://wa.me/2348102186232" target="_blank" class="icon-link icon-link--twitter">
+  <img src="{% static './img/whatsapp.png' %}">
+</a>
+ </section>
+    <section>
+    <br>
+    <br>
+</section>
+
+
+        <section class="services-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center ">
+                        <div class="site-title">
+            <div class="site-background" data-aos="fade-up" data-aos-delay="100">
+
+                  <h1 class="brush-text">Want To Eat?</h1>
+				  <img class="brushes" width="300px" src="{% static './img/Brush.svg' %}">
+                 <p class="bush-under">Try our Most Delicious food and drinks, it usually take minutes to deliver!</p>
+            </div>
+        </div>
+                    </div>
+                </div><br><br><br>
+                <div class="container services-list">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/services/pizza1.svg' %}" width="91" height="91" alt="Services-3">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">PIZZA</h5>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/services/shawarma.svg' %}" width="91" height="91" alt="Services-4">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">SHARWAMA</h5>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/services/burger.svg' %}" width="91" height="91" alt="Services-1">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">BURGER</h5>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/services/fastfood.svg' %}" width="91" height="91" alt="Services-2">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">FASTFOOD</h5>
+
+                                </div>
+                            </div>
+                        </div>
+						<div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/cup-550ml.png' %}" width="91" height="91" alt="Services-4">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">HABIB YOGHURT</h5>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/services/milkshake.png' %}" style="width:91px;height:91px;" alt="Services-4">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">MILKSHAKE</h5>
+
+                                </div>
+                            </div>
+                        </div>
+						<div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/services/small.png' %}" width="91" height="91" alt="Services-4">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">SMALL CHOPS</h5>
+
+                                </div>
+                            </div>
+                        </div>
+						<div class="col-lg-3 col-md-3 col-sm-3 col-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/services/donut.png' %}" width="91" height="91" alt="Services-4">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">DONUT</h5>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>
+
+        <section id="menu">
+    <div class="container">
+<div class="row">
+     <div class="col-lg-12 text-center ">
+         <div class="site-title">
+            <div class="site-background" data-aos="fade-up" data-aos-delay="100">
+
+                  <h1 class="brush-text">Our Most Popular Recipes</h1>
+				  <img width="300px" src="{% static './img/Brush.svg' %}">
+                 <p class="bush-under">Try our Most Delicious food and drinks, it usually take minutes to deliver!</p>
+            </div>
+        </div>
+         <br><br>
+     </div>
+
+		{% for product in products %}
+         {% if product.popular == 'Yes' %}
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{{product.imageURL}}">
+			<div class="box-element product">
+                <span><a style="color:none;" href="/product/{{product.id}}/{{product.name|slugify}}"><h6><strong>{{product.name}} </strong></h6></a></span>
+                <br><span style="display: inline-block; margin-top:-15px;   float: right"><strong>&#8358;{{product.price}}</strong>
+                    <span style="padding-left:5px"> <i class="fab fa-bitcoin"></i> {{product.price}}</span>
+                    <span style="padding-left:5px">  <i class="fab fa-ethereum"></i>  {{product.price}}</span></span>
+                {% for pro in product.toppings.all %}
+                {{pro.name}}
+                {{pro.price}}
+                {% endfor %}
+				<hr>
+
+
+				<button  data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+<a class="btn  " style=" float:right; border:none;padding:0px; " href="/product/{{product.id}}/{{product.name|slugify}}/#profile"><img style="width:50px;border-radius: 50%;height:50px;" src="{{product.profile_image}}" /></a>
+
+
+
+			</div>
+		</div>
+        {% endif %}
+		{% endfor %}
+    </div>
+<style>
+  .showmore{
+width: 245px;
+height: 68px;
+align:center;
+border-radius: 34px;
+margin:auto;
+background: #a80e0e;
+}
+
+.more {
+font-size:29px;
+margin-top:28px;
+padding-top:17px;
+color:#fff;
+}
+</style>
+        <div  class="showmore text-center"><h2 class="more" ><a href="{% url 'store' %}">Show More</a></h2></div>
+</div>
+</section>
+
+        <style>
+.section-4{
+    width:auto;
+}
+    .section-4 .container h1 {
+  font-size:  ;
+  padding-top:  ;
+}
+
+.section-4 .team {
+
+
+}
+.section-4 .row{
+ width:100%;
+}
+.section-4 .card {
+  width: 21em;
+  margin-top: 10vmin;
+}
+.section-4 .card-title{
+font-size:24px;
+font-family: Proxima Nova;
+}
+.section-4 .card .card-text {
+  padding: 1.6rem 1rem;
+
+  font-size:19px;
+}
+
+.section-4 .card-body > a {
+  font-size: 1.5em;
+}
+
+.section-4 .carousel-item {
+  padding-left: 3rem;
+}
+
+.border-radius {
+  border-radius: 340px;
+  width: 60%;
+}
+</style>
+          <section class="section-4" id="testimonials">
+      <div class="container text-center">
+          <div class="site-title">
+            <div class="site-background" data-aos="fade-up" data-aos-delay="100">
+
+                  <h1 class="brush-text">Customer Testimonials</h1>
+				  <img width="300px" src="{% static './img/Brush.svg' %}">
+                 <p class="bush-under">Try our Most Delicious food and drinks, it usually take minutes to deliver!</p>
+            </div>
+        </div>
+      </div>
+      <div class="team row ">
+        <div class="col-md-4 col-12 text-center">
+            <div class="card mr-2 d-inline-block shadow-lg">
+                <div class="card-img-top">
+                  <img src="{% static './img/valentine.png' %}" class="img-fluid border-radius p-4" alt="">
+                </div>
+                <div class="card-body">
+                  <h3 class="card-title">VALENTINE</h3>
+                  <p class="card-text">
+                    Just tried the chicken shawarma and habib yoghurt for the first time and LOVED it!!!! Soooo delicious!!. Love Foodeesplug!!
+                  </p>
+
+                  <a href="#" class="text-secondary text-decoration-none">Model</a>
+                  <p class="text-black-80">New Heaven</p>
+
+                </div>
+              </div>
+        </div>
+        <div class="col-md-4 col-12">
+            <div id="carouselExampleControls" class="carousel slide " data-ride="carousel">
+                <div class="carousel-inner text-center">
+                  <div class="carousel-item active">
+                    <div class="card mr-2 d-inline-block shadow">
+                      <div class="card-img-top">
+                        <img src="{% static './img/emelie.png' %}" class="img-fluid border-radius p-4" alt="">
+                      </div>
+                      <div class="card-body">
+                        <h3 class="card-title">EMELIE</h3>
+                        <p class="card-text">
+                          Thanks for making the ONLY snack that’s totally pure and tastes great too!
+                        </p>
+                          <br>
+                    <br>
+                        <a href="#" class="text-secondary text-decoration-none">Model</a>
+                        <p class="text-black-80">Independence Layout</p>
+                          <br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="card  d-inline-block mr-2 shadow">
+                      <div class="card-img-top">
+                        <img src="{% static './img/goodness.jpg' %}" class="img-fluid rounded-circle w-50 p-4" alt="">
+                      </div>
+                      <div class="card-body">
+                        <h3 class="card-title">GOODNESS</h3>
+                        <p class="card-text">
+                          Thank you for your food. It’s so fresh and delicious and it takes the work and guess-work out of my busy life when it comes to eating.
+                        </p>
+                        <a href="#" class="text-secondary text-decoration-none">Graphic Designer</a>
+                        <p class="text-black-80">Trans Ekulu</p>
+
+                      </div>
+                    </div>
+                  </div>
+              </div>
+        </div>
+        </div>
+        <div class="col-md-4 col-12 text-center">
+            <div class="card mr-2 d-inline-block shadow-lg">
+                <div class="card-img-top">
+                        <img src="{% static './img/Chiwendu.png' %}" class="img-fluid border-radius p-4" alt="">
+                      </div>
+                <div class="card-body">
+                  <h3 class="card-title">CHIWENDU</h3>
+                  <p class="card-text">
+                          I enjoyed the burger so yummy. Nice packaging tho
+                        </p><br><br>
+                  <a href="#" class="text-secondary text-decoration-none">Fashion Designer</a>
+                  <p class="text-black-80">Emene</p>
+                    <br>
+                </div>
+              </div>
+        </div>
+      </div>
+    </section>
+
+
+
+ {% endblock content %}
+
+

@@ -1,0 +1,252 @@
+ {% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+ {% block title %}
+<title> Login</title>
+{% endblock title %}
+<style>
+
+.tab {
+	border-radius: 5px;
+	overflow: hidden;
+	float: right;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
+	margin:-50px;
+	background: #fff;
+	box-shadow: var(--box-shadow);
+	transform: scale(0.8);
+	color:#A80E0E;
+	}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 14px;
+  transition: 0.3s;
+  font-size: 19px;
+}
+.tablinks{
+	color:#A80E0E
+}
+/* Change background color of buttons on hover */
+.tab button:hover {
+  box-shadow: var(--box-shadow);
+    transform: scale(1.1);
+	 color:#A80E0E;
+}
+.tablinks:hover{
+	color:#A80E0E;
+	font-size: 20px;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  display: none;
+}
+
+
+
+
+
+
+</style>
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+
+
+
+
+<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="tab">
+				  <button class="tablinks" onclick="openCity(event, 'form1')" id="defaultOpen">Customer </button>
+				  <button class="tablinks" onclick="openCity(event, 'form2')">Vendor</button>
+				</div>
+				<div>
+
+				</div>
+				<div id="form1" class="tabcontent">
+				<form class="login100-form validate-form" action="{% url 'logs' %}" method="post" >
+					{% csrf_token %}
+					<span class="login100-form-title p-b-26">
+						Welcome Customer
+					</span>
+					<span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
+					<img src="{% static 'img/logo.svg' %}" class="loginlogo" alt="">
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+						<input class="input100" type="text" name="username">
+						<span class="focus-input100" data-placeholder="Username:"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" minlength="5" type="password" name="password">
+						<span class="focus-input100" data-placeholder="Password:"></span>
+					</div>
+					{% for message in messages %}
+        			<hk class="d-flex justify-content-center">{{ message }}</hk>
+        			{% endfor %}
+					<div class="p-t-115">
+						<span class="txt1">
+							Forgotten Password?
+						</span>
+
+						<a class="txt2" href="{% url 'signup' %}">
+							Click Here
+						</a>
+					</div>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Login
+							</button>
+						</div>
+					</div>
+
+
+					<div class="text-center p-t-115">
+						<span class="txt1">
+							Don’t have an account?
+						</span>
+
+						<a class="txt2" href="{% url 'signup' %}">
+							Sign Up
+						</a>
+					</div>
+
+				</form>
+				</div>
+				<div id="form2" class="tabcontent">
+					<form class="login100-form validate-form" action="{% url 'logined' %}" method="post" >
+					{% csrf_token %}
+					<span class="login100-form-title p-b-26">
+						Welcome Vendor
+					</span>
+					<span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
+					<img src="{% static 'img/logo.svg' %}" class="loginlogo" alt="">
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+						<input class="input100" type="text" name="username" required>
+						<span class="focus-input100" data-placeholder="Username:"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" minlength="5" type="password" name="password" required>
+						<span class="focus-input100" data-placeholder="Password:"></span>
+					</div>
+					{% for message in messages %}
+        			<hk class="d-flex justify-content-center">{{ message }}</hk>
+        			{% endfor %}
+					<div class="p-t-115">
+						<span class="txt1">
+							Forgotten Password?
+						</span>
+
+						<a class="txt2" href="{% url 'signup' %}">
+							Click Here
+						</a>
+					</div>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Login
+							</button>
+						</div>
+					</div>
+
+
+					<div class="text-center p-t-115">
+						<span class="txt1">
+							Don’t have an account?
+						</span>
+
+						<a class="txt2" href="{% url 'signup' %}">
+							Sign Up
+						</a>
+					</div>
+
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+
+ <div class="box-element" id="payment-info">
+
+	</div>
+ <script>
+		function openCity(evt, cityName) {
+		  var i, tabcontent, tablinks;
+		  tabcontent = document.getElementsByClassName("tabcontent");
+		  for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		  }
+		  tablinks = document.getElementsByClassName("tablinks");
+		  for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+		  }
+		  document.getElementById(cityName).style.display = "block";
+		  evt.currentTarget.className += " active";
+		}
+
+		// Get the element with id="defaultOpen" and click on it
+		document.getElementById("defaultOpen").click();
+		</script>
+
+<!--===============================================================================================-->
+	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'js/login.js' %}"></script>
+
+{% endblock content %}

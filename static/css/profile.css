@@ -1,0 +1,626 @@
+
+.user-profile-sparkline{
+	background:none;
+	padding:0px;
+}
+.user-profile-social-list {
+    margin: 5px 0px;
+}
+.user-profile-img img{
+	border-radius:50%;
+	border:4px solid #ddd;
+}
+.user-profile-content h2, .user-profile-about h2{
+	font-size:20px;
+	color: #303030;
+}
+.user-profile-content .profile-founder{
+	font-size:14px;
+	color: #303030;
+	margin:0px 0px 10px;
+}
+.user-profile-content .profile-des{
+	font-size:14px;
+	color: #303030;
+	margin:0px;
+	line-height:24px;
+}
+.user-profile-about p{
+	font-size:14px;
+	color: #303030;
+	line-height:24px;
+}
+.user-profile-about span{
+	font-size:14px;
+	color: #303030;
+}
+.user-profile-about .user-profile-online{
+	font-size:12px;
+	color: #1ab394;
+}
+.user-profile-contact ul.profile-contact-menu li{
+	display:block;
+}
+.user-profile-contact ul.profile-contact-menu li img{
+	border-radius: 50%;
+    height: 50px;
+    margin-right: 15px;
+    width: 50px;
+}
+.user-profile-contact ul.profile-contact-menu li {
+    display: block;
+    padding-bottom: 15px;
+}
+.user-profile-contact ul.profile-contact-menu li a{
+    display: block;
+	font-size:14px;
+	color:#303030;
+}
+.user-profile-contact ul.profile-contact-menu li span.contact-profile-online-f{
+   text-align: right;
+    float: right;
+    padding: 18px 0px;
+    font-size: 10px;
+    color: #1ab394;
+    margin-right: 15px;
+}
+.user-profile-contact ul.profile-contact-menu li:last-child {
+    padding-bottom: 0px;
+}
+ul.profile-contact-menu {
+    text-align: left;
+}
+.user-profile-post{
+
+}
+.user-profile-post-action .comment-action-st, .user-profile-post-action .comment-action-st.in {
+    width: 140%;
+}
+.user-profile-post-name a{
+	font-size:20px;
+	color: #03a9f4;
+}
+.user-profile-post-name p{
+	font-size:14px;
+	color: #303030;
+}
+.user-profile-post-name a:hover{
+	font-size:20px;
+	color: #303030;
+}
+.profile-user-post-content p{
+	font-size:14px;
+	color: #303030;
+	line-height:24px;
+	margin:15px 0px;
+}
+.user-post-reply .btn{
+	margin-right:5px;
+	border-radius:0px;
+}
+.user-profile-img-post img{
+	border-radius:50%;
+}
+.user-profile-comment-list{
+	padding:20px;
+	background:#f1f1f1;
+}
+.user-profile-post{
+	border:1px solid #ccc;
+}
+.user-profile-comment-img img{
+	border-radius:50%;
+}
+.user-profile-comment-content p{
+	font-size:13px;
+	color: #303030;
+	line-height:22px;
+	margin:0px 0px 5px;
+}
+.profile-comment-mg, .replay-user-comment-pro{
+	margin-top:20px;
+}
+.comment-replay-profile .btn-white{
+	background: #03a9f4;
+	color:#fff;
+	margin-right:5px;
+}
+.user-profile-comment-input textarea {
+    width: 100%;
+    height: 60px;
+	padding:5px;
+	font-size:13px;
+}
+.user-profile-comment-input textarea:focus {
+    border:1px solid #03a9f4;
+}
+.post-user-profile-second{
+	margin-top:30px;
+}
+.profile-user-post-content .profile-user-post-img{
+	margin-bottom:15px;
+}
+.user-profile-mutual-friends h2{
+	font-size:20px;
+	color: #303030;
+}
+.user-profile-mutual-friends p{
+	font-size:14px;
+	color: #303030;
+	line-height:24px;
+}
+.user-profile-mutual-friends .mutual-friend-list img{
+	border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 2px;
+    margin-bottom: 5px;
+}
+
+/*----------------------------------------*/
+.sparkline-hd, .smart-sparkline-hd, .sparkline7-hd, .sparkline8-hd, .sparkline9-hd, .sparkline10-hd, .sparkline11-hd, .sparkline12-hd, .sparkline13-hd, .sparkline14-hd, .sparkline15-hd, .sparkline16-hd{
+	padding: 15px 20px;
+    background: #f9f9f9;
+	border-bottom:1px solid #ccc;
+}
+.main-spark-hd, .smart-main-spark-hd, .main-spark7-hd, .main-sparkline8-hd, .main-sparkline9-hd, .main-sparkline10-hd, .main-sparkline11-hd, .main-sparkline12-hd, .main-sparkline13-hd, .main-sparkline14-hd, .main-sparkline15-hd, .main-sparkline16-hd{
+	position:relative;
+}
+.main-spark-hd h1, .smart-main-spark-hd h1, .main-spark7-hd h1, .main-sparkline8-hd h1, .main-sparkline9-hd h1, .main-sparkline10-hd h1, .main-sparkline11-hd h1, .main-sparkline12-hd h1, .main-sparkline13-hd h1, .main-sparkline14-hd h1, .main-sparkline15-hd h1, .main-sparkline16-hd h1{
+	font-size:20px;
+	color:#303030;
+	position:relative;
+	margin:0px;
+}
+.outline-icon, .smart-outline-icon, .sparkline7-outline-icon, .sparkline8-outline-icon, .sparkline9-outline-icon, .sparkline10-outline-icon, .sparkline11-outline-icon, .sparkline12-outline-icon, .sparkline13-outline-icon, .sparkline14-outline-icon, .sparkline15-outline-icon, .sparkline16-outline-icon{
+    position: absolute;
+	right:0px;
+	top:0px;
+}
+.outline-icon span, .smart-outline-icon span, .sparkline7-outline-icon span, .sparkline8-outline-icon span, .sparkline9-outline-icon span, .sparkline10-outline-icon span, .sparkline11-outline-icon span, .sparkline12-outline-icon span, .sparkline13-outline-icon span, .sparkline14-outline-icon span, .sparkline15-outline-icon span, .sparkline16-outline-icon span{
+    padding-left:10px;
+	color:#303030;
+	cursor:pointer;
+}
+.sparkline-content p{
+	font-size:14px;
+	line-height:24px;
+}
+.sparkline-content, .sparkline7-graph, .sparkline8-graph, .sparkline9-graph, .sparkline10-graph, .sparkline11-graph, .sparkline12-graph, .sparkline13-graph, .sparkline14-graph, .sparkline15-graph, .sparkline16-graph{
+	padding:20px;
+	background:#fff;
+}
+.sparkline7-graph, .sparkline8-graph, .sparkline9-graph, .sparkline11-graph, .sparkline12-graph, .sparkline13-graph, .sparkline14-graph, .sparkline15-graph, .sparkline16-graph{
+	text-align:center;
+}
+.smart-sparkline-list {
+    padding: 14px 20px;
+    background: #fff;
+}
+.sparkline-content a{
+	color:#fff;
+	background:#03a9f4;
+	padding:10px 20px;
+	display:inline-block;
+}
+.sparkline-content a:hover{
+	color:#303030;
+	background:#03a9f0;
+}
+.table.table-adminpro{
+	margin-bottom:0px;
+}
+.jqstooltip {
+  width: auto !important;
+  height: auto !important;
+}
+.code-adminpro{
+	text-align:left;
+}
+.code-adminpro-center{
+	text-align:center;
+}
+.smart-sparkline-list.smart-pie-list {
+    padding: 17px 20px;
+}
+.table-adminpro code{
+	color:#303030;
+}
+/*----------------------------------------*/
+/*  10.  welcome Project, sale area CSS
+/*----------------------------------------*/
+.welcome-wrapper, .dashboard-line-chart, .dashone-adminprowrap{
+	background:#fff;
+	padding:20px;
+}
+.welcome-adminpro-title h1, .dash-adminpro-project-title h2{
+	font-size:20px;
+	color:#303030;
+}
+.welcome-adminpro-title p, .dash-adminpro-project-title p{
+	font-size:14px;
+	color:#303030;
+}
+ul.message-list-menu li {
+    padding: 5px 0px;
+    font-size: 14px;
+}
+ul.message-list-menu li {
+    padding: 5px 0px;
+    font-size: 14px;
+	border-bottom:1px solid #ddd;
+}
+ul.message-list-menu li:last-child {
+    padding-bottom: 0px;
+	border-bottom:0px solid #ddd;
+}
+ul.message-list-menu li .message-time{
+	text-align:right;
+}
+ul.message-list-menu li .message-info{
+	width:216px;
+	display:inline-block;
+}
+ul.message-list-menu li .message-serial {
+    width: 25px;
+    display: inline-block;
+    text-align: center;
+    margin-right: 10px;
+    background: #303030;
+    color: #fff;
+    border-radius: 4px;
+    padding: 2px 0px;
+}
+ul.message-list-menu li .message-serial.message-cl-one {
+    background: #03a9f0;
+}
+ul.message-list-menu li .message-serial.message-cl-two {
+    background: #303030;
+}
+ul.message-list-menu li .message-serial.message-cl-three {
+    background: #1ab394;
+}
+ul.message-list-menu li .message-serial.message-cl-four {
+    background: #ccc;
+	color:#303030;
+}
+ul.message-list-menu li .message-serial.message-cl-five {
+    background: #1c84c6;
+}
+.linechart-dash-rate {
+    text-align: center;
+    margin-top: 20px;
+}
+.linechart-dash-rate h2{
+	font-size:20px;
+	margin-bottom: 5px;
+}
+.linechart-dash-rate p{
+	font-size:14px;
+	margin: 0px;
+}
+#flot-dashboard-chart{
+	width: 100%;
+	height: 204px;
+}
+.dashone-doughnut #doughnutChart2, .dashone-doughnut #doughnutChart{
+	margin:0px 7px;
+}
+.dashone-doughnut h3, .dashone-doughnut h3{
+	font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+.project-dashone-phara p{
+	font-size: 14px;
+    margin: 0px;
+    line-height: 24px;
+    padding-top: 17px;
+}
+/*----------------------------------------*/
+
+/*----------------------------------------*/
+.custom-datatable-overright table tbody tr td {
+    padding-left: 10px !important;
+    padding-right: 5px !important;
+    font-size: 14px;
+	text-align:left;
+}
+.custom-datatable-overright table tbody tr td.datatable-ct{
+    text-align:center;
+	color: #03a9f4;
+}
+.custom-datatable-overright table tbody tr td a{
+    color:#303030;
+	font-size:14px;
+}
+.custom-datatable-overright .fixed-table-pagination .pagination-detail{
+	padding-left:10px;
+}
+.custom-datatable-overright .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+	background-color: #03a9f4;
+    border-color: #03a9f4;
+}
+.custom-datatable-overright .fixed-table-toolbar .bs-bars, .fixed-table-toolbar .search, .fixed-table-toolbar .columns{
+	margin-top: 0px;
+}
+.custom-datatable-overright .form-control, .custom-datatable-overright .btn{
+	border-radius: 0px;
+}
+.custom-datatable-overright .fixed-table-toolbar .btn-group > .btn-group:last-child > .btn{
+	border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.custom-datatable-overright .fixed-table-pagination div.pagination, .fixed-table-pagination .pagination-detail{
+	margin-right: 10px;
+}
+.custom-datatable-overright .pagination>li:first-child>a, .pagination>li:first-child>span{
+	border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.custom-datatable-overright .pagination>li:last-child>a, .pagination>li:last-child>span{
+	border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.custom-datatable-overright .fixed-table-container{
+	border-radius: 0px;
+}
+.custom-datatable-overright .btn-primary {
+    background-color: #03a9f4;
+    border-color: #03a9f4;
+}
+.custom-datatable-overright .card-view {
+   padding: 5px 10px;
+}
+.custom-datatable-overright .card-view .value i{
+  color: #03a9f4;
+}
+.custom-datatable-overright .card-view:hover {
+    background:#fff;
+}
+/*----------------------------------------*/
+/*  15.  Dashboard v.2.0
+/*----------------------------------------*/
+.dashtwo-order-list{
+	background:#fff;
+	padding:20px;
+}
+.flot-chart-dashtwo .legendLabel {
+    padding-left: 5px !important;
+}
+.flot-chart-dashtwo table {
+    margin-top: -14px;
+}
+.flot-chart-dashtwo tbody tr {
+    padding:5px 0px;
+}
+.flot-chart-dashtwo tbody tr {
+    padding: 2px 0px;
+    display: block;
+}
+/*----------------------------------------*/
+/*  16.  Dashboard progress bar
+/*----------------------------------------*/
+.skill-content-3 {
+    overflow: hidden
+}
+.skill .progress .lead-content {
+    left: 0;
+    position: absolute;
+    top: -50px;
+    z-index: 99;
+    width: 100%;
+}
+.skill .progress .lead-content h3{
+    font-size: 20px;
+    margin: 0px 0px;
+}
+.skill .progress .lead-content p{
+    font-size: 14px;
+    margin: 5px 0px;
+}
+.skill .progress {
+    background-color: #f0f0f0;
+    border-radius: 0;
+    box-shadow: none;
+    height: 5px;
+    overflow: visible;
+    position: relative;
+	margin: 60px 0px;
+}
+.skill .progress.progress-bt {
+    margin-bottom:0px;
+}
+.skill .progress-bar > span {
+    background: #333 none repeat scroll 0 0;
+    float: right;
+    font-size: 11px;
+    margin-right: 10px;
+    margin-top: -26px;
+    position: relative;
+    padding: 0 5px;
+}
+.skill .progress-bar > span:before,
+.skill .progress-bar > span:after {
+    border: medium solid transparent;
+    content: " ";
+    height: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    width: 0;
+}
+.skill .progress-bar > span:before {
+    border-top-color: #333;
+    border-width: 5px;
+    left: 50%;
+    margin-left: -5px;
+}
+.holax-shop h3,
+.we-are-good-at h3 {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+.skill .progress:nth-child(1) .progress-bar {
+    background: #23C6EC;
+}
+.skill .progress:nth-child(2) .progress-bar {
+    background: #EB3B60;
+}
+.skill .progress:nth-child(3) .progress-bar {
+    background: #2BCDC0;
+}
+/*----------------------------------------*/
+
+/*----------------------------------------*/
+.custom-datatable-overright table tbody tr td {
+    padding-left: 10px !important;
+    padding-right: 5px !important;
+    font-size: 14px;
+	text-align:left;
+}
+.custom-datatable-overright table tbody tr td.datatable-ct{
+    text-align:center;
+	color: #03a9f4;
+}
+.custom-datatable-overright table tbody tr td a{
+    color:#303030;
+	font-size:14px;
+}
+.custom-datatable-overright .fixed-table-pagination .pagination-detail{
+	padding-left:10px;
+}
+.custom-datatable-overright .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+	background-color: #03a9f4;
+    border-color: #03a9f4;
+}
+.custom-datatable-overright .fixed-table-toolbar .bs-bars, .fixed-table-toolbar .search, .fixed-table-toolbar .columns{
+	margin-top: 0px;
+}
+.custom-datatable-overright .form-control, .custom-datatable-overright .btn{
+	border-radius: 0px;
+}
+.custom-datatable-overright .fixed-table-toolbar .btn-group > .btn-group:last-child > .btn{
+	border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.custom-datatable-overright .fixed-table-pagination div.pagination, .fixed-table-pagination .pagination-detail{
+	margin-right: 10px;
+}
+.custom-datatable-overright .pagination>li:first-child>a, .pagination>li:first-child>span{
+	border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.custom-datatable-overright .pagination>li:last-child>a, .pagination>li:last-child>span{
+	border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.custom-datatable-overright .fixed-table-container{
+	border-radius: 0px;
+}
+.custom-datatable-overright .btn-primary {
+    background-color: #03a9f4;
+    border-color: #03a9f4;
+}
+.custom-datatable-overright .card-view {
+   padding: 5px 10px;
+}
+.custom-datatable-overright .card-view .value i{
+  color: #03a9f4;
+}
+.custom-datatable-overright .card-view:hover {
+    background:#fff;
+}
+/*----------------------------------------*/
+/*  15.  Dashboard v.2.0
+/*----------------------------------------*/
+.dashtwo-order-list{
+	background:#fff;
+	padding:20px;
+}
+.flot-chart-dashtwo .legendLabel {
+    padding-left: 5px !important;
+}
+.flot-chart-dashtwo table {
+    margin-top: -14px;
+}
+.flot-chart-dashtwo tbody tr {
+    padding:5px 0px;
+}
+.flot-chart-dashtwo tbody tr {
+    padding: 2px 0px;
+    display: block;
+}
+/*----------------------------------------*/
+/*  16.  Dashboard progress bar
+/*----------------------------------------*/
+.skill-content-3 {
+    overflow: hidden
+}
+.skill .progress .lead-content {
+    left: 0;
+    position: absolute;
+    top: -50px;
+    z-index: 99;
+    width: 100%;
+}
+.skill .progress .lead-content h3{
+    font-size: 20px;
+    margin: 0px 0px;
+}
+.skill .progress .lead-content p{
+    font-size: 14px;
+    margin: 5px 0px;
+}
+.skill .progress {
+    background-color: #f0f0f0;
+    border-radius: 0;
+    box-shadow: none;
+    height: 5px;
+    overflow: visible;
+    position: relative;
+	margin: 60px 0px;
+}
+.skill .progress.progress-bt {
+    margin-bottom:0px;
+}
+.skill .progress-bar > span {
+    background: #333 none repeat scroll 0 0;
+    float: right;
+    font-size: 11px;
+    margin-right: 10px;
+    margin-top: -26px;
+    position: relative;
+    padding: 0 5px;
+}
+.skill .progress-bar > span:before,
+.skill .progress-bar > span:after {
+    border: medium solid transparent;
+    content: " ";
+    height: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    width: 0;
+}
+.skill .progress-bar > span:before {
+    border-top-color: #333;
+    border-width: 5px;
+    left: 50%;
+    margin-left: -5px;
+}
+.holax-shop h3,
+.we-are-good-at h3 {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+.skill .progress:nth-child(1) .progress-bar {
+    background: #23C6EC;
+}
+.skill .progress:nth-child(2) .progress-bar {
+    background: #EB3B60;
+}
+.skill .progress:nth-child(3) .progress-bar {
+    background: #2BCDC0;
+}
+/*----------------------------------------*/

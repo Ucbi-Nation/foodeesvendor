@@ -1,0 +1,533 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block mactive %}
+	active
+{% endblock mactive %}
+{% block content %}
+{% block title %}
+<title>Menu</title>
+{% endblock title %}
+ <link rel="stylesheet" href="{% static 'css/stylestore.css' %}">
+					<script type="text/javascript">
+							var user = '{{request.user}}'
+
+							function getToken(name) {
+								var cookieValue = null;
+								if (document.cookie && document.cookie !== '') {
+									var cookies = document.cookie.split(';');
+									for (var i = 0; i < cookies.length; i++) {
+										var cookie = cookies[i].trim();
+										// Does this cookie string begin with the name we want?
+										if (cookie.substring(0, name.length + 1) === (name + '=')) {
+											cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+											break;
+										}
+									}
+								}
+								return cookieValue;
+							}
+							var csrftoken = getToken('csrftoken')
+
+							function getCookie(name) {
+								// Split cookie string and get all individual name=value pairs in an array
+								var cookieArr = document.cookie.split(";");
+
+								// Loop through the array elements
+								for(var i = 0; i < cookieArr.length; i++) {
+									var cookiePair = cookieArr[i].split("=");
+
+									/* Removing whitespace at the beginning of the cookie name
+									and compare it with the given string */
+									if(name == cookiePair[0].trim()) {
+										// Decode the cookie value and return
+										return decodeURIComponent(cookiePair[1]);
+									}
+								}
+
+								// Return null if not found
+								return null;
+							}
+							var cart = JSON.parse(getCookie('cart'))
+
+							if (cart == undefined){
+								cart = {}
+								console.log('Cart Created!', cart)
+								document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+							}
+							console.log('Cart:', cart)
+
+						</script>
+
+
+					<div class="container">
+						<div class="row">
+						<div class="col-lg-12 text-center ">
+							 <div class="site-title">
+								<div class="site-background" data-aos="fade-up" data-aos-delay="100">
+
+									  <h1 class="brush-text">Our Delicious Recipes</h1>
+									  <img src="{% static './img/Brush.svg' %}">
+									 <p class="bush-under">Try our Most Delicious food and drinks, it usually take minutes to deliver!</p>
+								</div>
+							</div>
+						 </div>
+												<style>
+												.breadcome-heading .form-control, .breadcome-heading .form-control:focus {
+												border: 2px solid #ececec;
+												font-size: 13px;
+												margin-top:5px;
+												height: 34px;
+												color: #303030;
+												padding-left: 20px;
+												padding-right: 40px;
+												background: rgba(255, 255, 255, 0.1);
+												box-shadow: none;
+												border-radius: 30px;
+												width: 250px;}
+
+												.form-control {
+												background-color: #FFFFFF;
+												background-image: none;
+												border: 1px solid #e5e6e7;
+												border-radius: 1px;
+												color: inherit;
+												display: block;
+												padding: 6px 12px;
+												padding-right: 12px;
+												padding-left: 12px;
+												transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+												width: 100%;
+												line-height: 1.42857143;}
+												.breadcome-heading a {
+												position: absolute;
+												top: 5px;
+												left: 224px;
+												display: block;
+												height: 40px;
+												line-height: 34px;
+												width: 34px;
+
+												text-align: center;
+												color: #999;}
+												a {
+												transition: all 0.3s ease 0s;
+												text-decoration: none;
+												}
+
+												</style>
+												<br>
+
+						<div class="col-lg-12">
+							<div class="breadcome-heading">
+								<form role="search" action="{% url 'search' %}" method="get" class="">
+
+									<input name="q" type="text" placeholder="Search..." class="form-control">
+									<a><button style="position: absolute;background:none; border:none;"><i  class="fa fa-search"></i></button></a>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+<br>
+
+
+
+<div class="shop">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2   ">
+						<div class="sidebar">
+							<div class="side">
+								<h2>Categories</h2>
+								<div class="fancy-collapse-panel">
+			                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			                     <div class="panel panel-default">
+			                         <div class="panel-heading" role="tab" id="headingOne">
+			                             <h4 class="panel-title">
+			                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Shawarma
+			                                 </a>
+			                             </h4>
+			                         </div>
+			                         <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+			                             <div class="panel-body">
+			                                 <ul>
+			                                 	<li><a href="#">Jeans</a></li>
+			                                 </ul>
+			                             </div>
+			                         </div>
+			                     </div>
+			                     <div class="panel panel-default">
+			                         <div class="panel-heading" role="tab" id="headingTwo">
+			                             <h4 class="panel-title">
+			                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Foods
+			                                 </a>
+			                             </h4>
+			                         </div>
+			                         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+			                             <div class="panel-body">
+			                                <ul>
+			                                 	<li><a href="#">Jeans</a></li>
+			                                 </ul>
+			                             </div>
+			                         </div>
+			                     </div>
+			                     <div class="panel panel-default">
+			                         <div class="panel-heading" role="tab" id="headingThree">
+			                             <h4 class="panel-title">
+			                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Chicken & Grills
+			                                 </a>
+			                             </h4>
+			                         </div>
+			                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+			                             <div class="panel-body">
+			                                <ul>
+			                                 	<li><a href="#">Jeans</a></li>
+			                                 </ul>
+			                             </div>
+			                         </div>
+			                     </div>
+			                     <div class="panel panel-default">
+			                         <div class="panel-heading" role="tab" id="headingFour">
+			                             <h4 class="panel-title">
+			                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">Yoghurt & Smoothie
+			                                 </a>
+			                             </h4>
+			                         </div>
+			                         <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+			                             <div class="panel-body">
+			                                <ul>
+			                                 	<li><a href="/category/?q=habib">Habib Yoghurt</a></li>
+			                                 	<li><a href="/category/?q=greek">Greek Yoghurt</a></li>
+			                                 </ul>
+			                             </div>
+			                         </div>
+			                     </div>
+			                  </div>
+			               </div>
+							</div>
+							<div class="side">
+								<h2>Price Range</h2>
+								<br>
+								<form method="get" action="{% url 'price_filter' %}"  class=" ">
+				              	<div class="row">
+				                <div class="col-md-12">
+				                  <div class="form-group">
+				                    <label style="margin-bottom:5px;"  for="guests">Price from: </label>
+									  <br>
+				                    <div class="form-field">
+				                      <i class="icon icon-arrow-down3"></i>
+				                      <select name="from" id="people" class="form-controls">
+				                        <option value="400">100</option>
+				                        <option value="400">200</option>
+				                        <option value="400">400</option>
+				                        <option value="500">500</option>
+				                        <option value="1000">1000</option>
+				                        <option value="2000">2000</option>
+				                      </select>
+				                    </div>
+				                  </div>
+				                </div>
+				                <div class="col-md-12">
+				                  <div class="form-group">
+				                    <label style="margin-bottom:5px;"  for="guests">Price to:  </label>
+									  <br>
+				                    <div style=" " class="form-field">
+				                      <i class="icon icon-arrow-down3"></i>
+				                      <select name="to" id="people" class="form-controls">
+				                        <option value="2000">2000</option>
+				                        <option value="2000">2000</option>
+				                        <option value="4000">4000</option>
+				                        <option value="6000">6000</option>
+				                        <option value="8000">8000</option>
+				                        <option value="10000">10000</option>
+				                        <option value="10000">15000</option>
+				                      </select>
+				                    </div>
+				                  </div>
+				                </div>
+
+									<button type="submit" style="margin-left:20px;" class="btn btn-primary">Filter</button>
+				              </div>
+				            </form>
+							</div>
+
+							<div class="side">
+								 <div class="form-group">
+				                    <label style="margin-bottom:5px;" for="guests">State: </label>
+									  <br>
+				                    <div class="form-field">
+				                      <i class="icon icon-arrow-down3"></i>
+				                      <select name="people" id="people" class="form-controls">
+				                        <option value="#">Enugu</option>
+				                      </select>
+				                    </div>
+				                  </div>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-md-10   ">
+						<div class="row row-pb-lg">
+							<div class="col-md-6 col-lg-4 text-center">
+								<div class="shop-card">
+					<div class="slider1">
+						{% for show in products %}
+							  {% if show.category == 'yoghurt' %}
+							<figure data-color="{{show.color}}, {{show.color2}},&#8358;{{show.price}}, first, {{show.id}}">
+								<a href="/product/{{show.id}}/{{show.name|slugify}}"><img src="{{show.imageURL}}" /></a>
+								<div class="desc-title"><a href="/product/{{show.id}}/{{show.name|slugify}}">{{show.name}}</a></div>
+								<br>
+								<button data-product="{{show.id}}" data-action="add" class="btn1 add-btn update-cart">Add to Cart<span class="bg1"></span></button>
+ 							 <a class="btn btn-outline-success" style="border:none;padding:0px; " href="/product/{{show.id}}/{{show.name|slugify}}/#profile"><img style="width:50px;border-radius: 50%;height:50px;" src="{{show.profile_image}}" /></a>
+							</figure>
+						{% endif %}
+						{% endfor %}
+						  </div>
+
+					  <div class="cta">
+						  <div style="display: inline-block; float: left;color:black;font-size:22px;"><a style="color:#A80E0E;" href="#slider4">Toppings</a></div>
+						  <div class="price" id="price" style="display: inline-block; float: right">&#8358;{{sh}}</div>
+					  </div>
+				</div>
+							</div>
+				<div class="col-md-6 col-lg-4 text-center">
+								<div class="shop-card">
+					<div class="slider2">
+						{% for show in products %}
+							  {% if show.category == 'cake' %}
+							<figure data-color="{{show.color}}, {{show.color2}},&#8358;{{show.price}}, first, {{show.id}}">
+								<a href="/product/{{show.id}}/{{show.name|slugify}}"><img src="{{show.imageURL}}" /></a>
+								<div class="desc-title"><a href="/product/{{show.id}}/{{show.name|slugify}}">{{show.name}}</a></div>
+								<br>
+								<button data-product="{{show.id}}" data-action="add" class="btn2 add-btn update-cart">Add to Cart<span class="bg2"></span></button>
+ 							 <a class="btn btn-outline-success" style="border:none;padding:0px; " href="/product/{{show.id}}/{{show.name|slugify}}/#profile"><img style="width:50px;border-radius: 50%;height:50px;" src="{{show.profile_image}}" /></a>
+							</figure>
+						{% endif %}
+						{% endfor %}
+						  </div>
+						  <div class="cta">
+							  <div class="price22" id="price" style="display: inline-block; float: right">&#8358;{{sh2}}</div>
+						  </div>
+				</div>
+							</div>
+					<div class="col-md-6 col-lg-4 text-center">
+								<div class="shop-card">
+					<div class="slider3">
+						{% for show in products %}
+							  {% if show.category == 'shawarma' %}
+							<figure data-color="{{show.color}}, {{show.color2}},&#8358;{{show.price}}, first, {{show.id}}">
+								<a href="/product/{{show.id}}/{{show.name|slugify}}"><img src="{{show.imageURL}}" /></a>
+								<div class="desc-title"><a href="/product/{{show.id}}/{{show.name|slugify}}">{{show.name}}</a></div>
+								<br>
+								<button data-product="{{show.id}}" data-action="add" class="btn3 add-btn update-cart">Add to Cart<span class="bg3"></span></button>
+ 							 <a class="btn btn-outline-success" style="border:none;padding:0px; " href="/product/{{show.id}}/{{show.name|slugify}}/#profile"><img style="width:50px;border-radius: 50%;height:50px;" src="{{show.profile_image}}" /></a>
+							</figure>
+						{% endif %}
+						{% endfor %}
+						  </div>
+						  <div class="cta">
+							  <div class="price33" id="price" style="display: inline-block; float: right">&#8358;{{sh3}}</div>
+						  </div>
+						</div>
+							</div>
+							<div class="col-md-6 col-lg-4 text-center">
+								<div class="shop-card" id="slider4">
+					<div class="slider4" >
+						{% for show in products %}
+							  {% if show.category == 'grill' %}
+							<figure data-color="{{show.color}}, {{show.color2}},&#8358;{{show.price}}, first, {{show.id}}">
+								<a href="/product/{{show.id}}/{{show.name|slugify}}"><img src="{{show.imageURL}}" /></a>
+								<div class="desc-title"><a href="/product/{{show.id}}/{{show.name|slugify}}">{{show.name}}</a></div>
+								<br>
+								<button data-product="{{show.id}}" data-action="add" class="btn4 add-btn update-cart">Add to Cart<span class="bg4"></span></button>
+ 							 <a class="btn btn-outline-success" style="border:none;padding:0px; " href="/product/{{show.id}}/{{show.name|slugify}}/#profile"><img style="width:50px;border-radius: 50%;height:50px;" src="{{show.profile_image}}" /></a>
+							</figure>
+						{% endif %}
+						{% endfor %}
+						  </div>
+						  <div class="cta">
+							  <div class="price44" id="price" style="display: inline-block; float: right">&#8358;{{sh4}}</div>
+						  </div>
+				</div>
+							</div>
+							<div class="col-md-6 col-lg-4 text-center">
+								<div class="shop-card">
+					<div class="slider5">
+						{% for show in products %}
+							  {% if show.category == 'pop-corn' %}
+							<figure data-color="{{show.color}}, {{show.color2}},&#8358;{{show.price}}, first, {{show.id}}">
+								<a href="/product/{{show.id}}/{{show.name|slugify}}"><img src="{{show.imageURL}}" /></a>
+								<div class="desc-title"><a href="/product/{{show.id}}/{{show.name|slugify}}">{{show.name}}</a></div>
+								<br>
+								<button data-product="{{show.id}}" data-action="add" class="btn5 add-btn update-cart">Add to Cart<span class="bg5"></span></button>
+ 							 <a class="btn btn-outline-success" style="border:none;padding:0px; " href="/product/{{show.id}}/{{show.name|slugify}}/#profile"><img style="width:50px;border-radius: 50%;height:50px;" src="{{show.profile_image}}" /></a>
+							</figure>
+						{% endif %}
+						{% endfor %}
+						  </div>
+						  <div class="cta">
+							  <div class="price55" id="price" style="display: inline-block; float: right">&#8358;{{sh5}}</div>
+						  </div>
+				</div>
+							</div>
+							<div class="col-md-6 col-lg-4 text-center">
+								<div class="shop-card">
+					<div class="slider6">
+						{% for show in products %}
+							  {% if show.category == 'bread' %}
+							<figure data-color="{{show.color}}, {{show.color2}},&#8358;{{show.price}}, first, {{show.id}}">
+								<a href="/product/{{show.id}}/{{show.name|slugify}}"><img src="{{show.imageURL}}" /></a>
+								<div class="desc-title"><a href="/product/{{show.id}}/{{show.name|slugify}}">{{show.name}}</a></div>
+								<br>
+								<button data-product="{{show.id}}" data-action="add" class="btn6 add-btn update-cart">Add to Cart<span class="bg6"></span></button>
+ 							 <a class="btn btn-outline-success" style="border:none;padding:0px; " href="/product/{{show.id}}/{{show.name|slugify}}/#profile"><img style="width:50px;border-radius: 50%;height:50px;" src="{{show.profile_image}}" /></a>
+							</figure>
+						{% endif %}
+						{% endfor %}
+						  </div>
+						  <div class="cta">
+							  <div class="price66" id="price" style="display: inline-block; float: right">&#8358;{{sh6}}</div>
+						  </div>
+				</div>
+							</div>
+
+							<div class="col-md-6 col-lg-4 text-center">
+								<div class="shop-card">
+					<div class="slider7">
+						{% for show in products %}
+							  {% if show.category == 'smothie' %}
+							<figure data-color="{{show.color}}, {{show.color2}},&#8358;{{show.price}}, first, {{show.id}}">
+								<a href="/product/{{show.id}}/{{show.name|slugify}}"><img src="{{show.imageURL}}" /></a>
+								<div class="desc-title"><a href="/product/{{show.id}}/{{show.name|slugify}}">{{show.name}}</a></div>
+								<br>
+								<button data-product="{{show.id}}" data-action="add" class="btn7 add-btn update-cart">Add to Cart<span class="bg7"></span></button>
+ 							 <a class="btn btn-outline-success" style="border:none;padding:0px; " href="/product/{{show.id}}/{{show.name|slugify}}/#profile"><img style="width:50px;border-radius: 50%;height:50px;" src="{{show.profile_image}}" /></a>
+							</figure>
+						{% endif %}
+						{% endfor %}
+						  </div>
+						  <div class="cta">
+							  <div class="price77" id="price" style="display: inline-block; float: right">&#8358;{{sh7}}</div>
+						  </div>
+				</div>
+							</div>
+
+							<div class="col-md-6 col-lg-4 text-center">
+								<div class="shop-card">
+					<div class="slider8">
+						{% for show in products %}
+							  {% if show.category == 'drink' %}
+							<figure data-color="{{show.color}}, {{show.color2}},&#8358;{{show.price}}, first, {{show.id}}">
+								<a href="/product/{{show.id}}/{{show.name|slugify}}"><img src="{{show.imageURL}}" /></a>
+								<div class="desc-title"><a href="/product/{{show.id}}/{{show.name|slugify}}">{{show.name}}</a></div>
+								<br>
+								<button data-product="{{show.id}}" data-action="add" class="btn8 add-btn update-cart">Add to Cart<span class="bg8"></span></button>
+ 							 <a class="btn btn-outline-success" style="border:none;padding:0px; " href="/product/{{show.id}}/{{show.name|slugify}}/#profile"><img style="width:50px;border-radius: 50%;height:50px;" src="{{show.profile_image}}" /></a>
+							</figure>
+						{% endif %}
+						{% endfor %}
+						  </div>
+						  <div class="cta">
+							  <div class="price88" id="price" style="display: inline-block; float: right">&#8358;{{sh8}}</div>
+						  </div>
+				</div>
+							</div>
+
+
+						</div>
+						<style>
+
+	.buttonz {
+	  border: none;
+	  width: 152px;
+	  height: 40px;
+	  margin: auto;
+	  margin-top: 29px;
+	  cursor: pointer;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  padding: 0;
+	  background: #DC9C45;
+	  font-size: 13px;
+	  color: #fff;
+	  text-transform: uppercase;
+	  font-family: "Muli-SemiBold";
+	  border-radius: 20px;
+	  overflow: hidden;
+	  -webkit-transform: perspective(1px) translateZ(0);
+	  transform: perspective(1px) translateZ(0);
+	  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	  position: relative;
+	  -webkit-transition-property: color;
+	  transition-property: color;
+	  -webkit-transition-duration: 0.5s;
+	  transition-duration: 0.5s; }
+	  .buttonz:before {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: #DC9C45;
+		-webkit-transform: scaleX(0);
+		transform: scaleX(0);
+		-webkit-transform-origin: 0 50%;
+		transform-origin: 0 50%;
+		-webkit-transition-property: transform;
+		transition-property: transform;
+		-webkit-transition-duration: 0.5s;
+		transition-duration: 0.5s;
+		-webkit-transition-timing-function: ease-out;
+		transition-timing-function: ease-out;
+		 background: -webkit-linear-gradient(right, #ae3c33, #b721ff, #ae3c33, #b721ff);
+	  background: -o-linear-gradient(right, #ae3c33, #DC9C45, #ae3c33, #DC9C45);
+	  background: -moz-linear-gradient(right, #ae3c33, #DC9C45, #ae3c33, #DC9C45);
+	  background: linear-gradient(right, #ae3c33, #DC9C45, #ae3c33, #DC9C45);
+	  top: 0;
+	  left: -100%;
+
+	  -webkit-transition: all 0.4s;
+	  -o-transition: all 0.4s;
+	  -moz-transition: all 0.4s;
+	  transition: all 0.4s;}
+	  .buttonz:hover:before {
+		-webkit-transform: scaleX(1);
+		transform: scaleX(1);
+		-webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+		transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+		  display: -webkit-box;
+	  display: -webkit-flex;
+	  display: -moz-box;
+	  display: -ms-flexbox;
+	  display: flex;
+		left: 0;}
+
+
+
+	</style>
+
+						<span><button class="buttonz"  ><a href="{% url 'cart' %}">Checkout Now</a></button></span>
+						<br>
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="pagination">
+									<li class="disabled"><a href="#">&laquo;</a></li>
+									<li class="active"><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">&raquo;</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+{% endblock content %}

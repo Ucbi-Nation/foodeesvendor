@@ -1,0 +1,23 @@
+{% load webpush_notifications %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  # For django templating engine
+  {% webpush_header %}
+  # For jinja templating engine
+  {{ webpush_header() }}
+
+</head>
+
+<body>
+
+  <p> Hello World! </p>
+  # For django templating engine
+  {% webpush_button %}
+  # For jinja templating engine
+  {{ webpush_button() }}
+
+</body>
+</html>

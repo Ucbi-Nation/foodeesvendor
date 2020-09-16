@@ -1,0 +1,20 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block mactive %}
+    active
+{% endblock mactive %}
+{% block content %}
+{% block title %}
+<title>Menu</title>
+{% endblock title %}
+
+<body>
+<h2>Home of chef</h2>
+{% for show in products %}
+<h2>{{ show.email }}</h2>
+{% endfor %}
+
+
+<h2><a href="/chef/register">Click here to register your resturant </a></h2>
+</body>
+{% endblock content %}

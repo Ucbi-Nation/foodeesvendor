@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Ecom</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+
+
+
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/slide.css' %}">
+     <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+<!--card-->
+ <link rel="stylesheet" href="{% static 'css/reset.min.css' %}">
+<link rel='stylesheet' href="{% static 'css/css.css' %}">
+<link rel='stylesheet' href="{% static 'css/slick.min.css' %}">
+<link rel='stylesheet' href="{% static 'css/slick-theme.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/style2.css' %}">
+
+
+
+	<script type="text/javascript">
+		var user = '{{request.user}}'
+
+		function getToken(name) {
+		    var cookieValue = null;
+		    if (document.cookie && document.cookie !== '') {
+		        var cookies = document.cookie.split(';');
+		        for (var i = 0; i < cookies.length; i++) {
+		            var cookie = cookies[i].trim();
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		var csrftoken = getToken('csrftoken')
+
+		function getCookie(name) {
+		    // Split cookie string and get all individual name=value pairs in an array
+		    var cookieArr = document.cookie.split(";");
+
+		    // Loop through the array elements
+		    for(var i = 0; i < cookieArr.length; i++) {
+		        var cookiePair = cookieArr[i].split("=");
+
+		        /* Removing whitespace at the beginning of the cookie name
+		        and compare it with the given string */
+		        if(name == cookiePair[0].trim()) {
+		            // Decode the cookie value and return
+		            return decodeURIComponent(cookiePair[1]);
+		        }
+		    }
+
+		    // Return null if not found
+		    return null;
+		}
+		var cart = JSON.parse(getCookie('cart'))
+
+		if (cart == undefined){
+			cart = {}
+			console.log('Cart Created!', cart)
+			document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+		}
+		console.log('Cart:', cart)
+	
+	</script>
+
+</head>
+<body>
+
+
+
+
+<header class="header_area">
+        <div class="main-menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="#"><img src="{% static 'burger.svg' %}" alt="logo"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="mr-auto"></div>
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">testimonials</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">order now</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">contact</a>
+                        </li>
+
+                    </ul>
+
+					<div class="form-inline my-2 my-lg-0">
+						{% if user.is_authenticated %}
+						<a href="login"class="btn btn-warning">{{user.username}}</a>
+	     			<a href="logo"class="btn btn-warning">Logout</a>
+						{% else %}
+						<a href="regis" class="nav-link">Register</a>
+			<a href="login"class="btn btn-warning">Login</a>
+						{%  endif %}
+	     	<a href="{% url 'cart' %}">
+	    		<img  id="cart-icon" src="{% static 'images/cart.png' %}">
+	    	</a>
+	    	<p id="cart-total">{{cartItems}}</p>
+
+	    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+     <div class="container">
+            <br>
+            {% block content %}
+
+
+            {% endblock content %}
+         </div>
+
+ {% block index %}
+
+{% endblock index%}
+ <section>
+ <!-- partial:index.partial.html -->
+<div id="app"></div>
+<a href="https://dribbble.com/shots/3774469-T-R-A-V-E-L-E-R" target="_blank" class="icon-link">
+  <img src="http://icons.iconarchive.com/icons/uiconstock/socialmedia/256/Dribbble-icon.png">
+</a>
+
+
+<a href="https://twitter.com/NikolayTalanov" target="_blank" class="icon-link icon-link--twitter">
+  <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/twitter-128.png">
+</a>
+<!-- partial -->
+ </section>
+
+<section class="services-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center ">
+                        <div class="site-title">
+            <div class="site-background" data-aos="fade-up" data-aos-delay="100">
+
+                  <h1 class="brush-text">Want To Eat?</h1>
+				  <img src="{% static './img/Brush.svg' %}">
+                 <p class="bush-under">Try our Most Delicious food and drinks, it usually take minutes to deliver!</p>
+            </div>
+        </div>
+                    </div>
+                </div>
+                <div class="container services-list">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/services/burger.svg' %}" alt="Services-1">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">BURGER</h5>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/services/fastfood.svg' %}" alt="Services-2">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">FASTFOOD</h5>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/services/pizza1.svg' %}" alt="Services-3">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">PIZZA</h5>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/services/shawarma.svg' %}" alt="Services-4">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">SHARWAMA</h5>
+
+                                </div>
+                            </div>
+                        </div>
+						<div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/services/s4.png' %}" alt="Services-4">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">HABIB YOUGHRT</h5>
+
+                                </div>
+                            </div>
+                        </div>
+						<div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/services/s4.png' %}" alt="Services-4">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">SOFT DRINKS</h5>
+
+                                </div>
+                            </div>
+                        </div>
+						<div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/services/s4.png' %}" alt="Services-4">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">BREAD</h5>
+
+                                </div>
+                            </div>
+                        </div>
+						<div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="services">
+                                <div class="sevices-img text-center py-4">
+                                    <img src="{% static './img/services/s4.png' %}" alt="Services-4">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-uppercase font-roboto">MEATPIE</h5>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>
+
+<section class="site-title">
+            <div class="site-background" data-aos="fade-up" data-aos-delay="100">
+
+                  <h1 class="brush-text">Want To Eat?</h1>
+				  <img src="{% static './img/Brush.svg' %}">
+                 <p class="bush-under">Try our Most Delicious food and drinks, it usually take minutes to deliver!</p>
+            </div>
+</section>
+
+
+	<section class="about-area">
+            <div class="container-fluid">
+                <div class="row picss">
+                    <div class="col-lg-6 col-md-12">
+
+                            <img src="{% static './img/bike.gif' %}" alt="About us" class="img-fluid">
+
+                    </div>
+					<div class="col-lg-6 col-md-12">
+
+                            <img src="{% static './img/flier.png' %}" alt="About us" class="img-fluid">
+
+                    </div>
+
+                </div>
+            </div>
+	</section>
+<section class="slides">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center slide-text">
+                        <h1 class="text-uppercase title-text slidett">Want To Eat?</h1>
+						<img src="{% static './img/Brush.svg' %}">
+						<p class="bush-under">Try our Most Delicious food and drinks, it usually take minutes to deliver!</p>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="shop-card">
+											  <div class="title">
+												Nike Metcon 2
+											  </div>
+											  <div class="desc">
+												Men's training shoe
+											  </div>
+											  <div class="slider1">
+												<figure data-color="#E24938, #A30F22,$4545, first">
+												  <img src="1.jpg" />
+												  <div class="desc-rating">Men'sng shoe</div>
+												  <div class="desc-title">Men'sng shoe</div>
+												  <div class="descs">Men'sng shoe</div>
+												  <div class="price1" id="price1"></div>
+												</figure>
+												<figure data-color="#6CD96A, #00986F,$45,first">
+												  <img src="2.jpg" />
+												  <div class="desc">
+												Men's training shoe
+											  </div><div class="price1" id="price1"></div>
+												</figure>
+												<figure data-color="#4795D1, #006EB8,$357, first">
+												  <img src="3.jpg" />
+												  <div class="price1" id="price1"></div>
+												</figure>
+												<figure data-color="#292a2f, #131519,$8787, first">
+												  <img src="4.jpg" />
+												  <div class="price1" id="price1"></div>
+												</figure>
+
+											  </div>
+
+											  <div class="cta">
+												<div class="price" id="price"></div>
+												<button class="btn1">Add to cart<span class="bg1"></span></button>
+											  </div>
+											</div>
+                        </div>
+
+						 <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="shop-card">
+											  <div class="title">
+												Nike Metcon 2
+											  </div>
+											  <div class="desc">
+												Men's training shoe
+											  </div>
+											  <div class="slider2">
+												<figure data-color="#E24938, #A30F22,$242,second">
+												  <img src="1.jpg" />
+												  <div class="desc-rating">Men'sng shoe</div>
+												  <div class="desc-title">Men'sng shoe</div>
+												  <div class="descs">Men'sng shoe</div>
+												  <div class="price2" id="price2">$230</div>
+												</figure>
+												<figure data-color="#6CD96A, #00986F,$22,second,">
+												  <img src="2.jpg" />
+												  <div class="desc">
+												Men's training shoe
+											  </div><div class="price2" id="price2">$830</div>
+												</figure>
+												<figure data-color="#4795D1, #006EB8,$630,second">
+												  <img src="3.jpg" />
+												  <div class="price2" id="price2">$430</div>
+												</figure>
+												<figure data-color="#292a2f, #131519,$2350,second">
+												  <img src="4.jpg" />
+												  <div class="price2" id="price2">$9870</div>
+												</figure>
+
+											  </div>
+
+											  <div class="cta">
+												<div class="price22" id="price"></div>
+												<button class="btn2">Add to cart<span class="bg2"></span></button>
+											  </div>
+											</div>
+                        </div>
+
+						 <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="shop-card">
+											  <div class="title">
+												Nike Metcon 2
+											  </div>
+											  <div class="desc">
+												Men's training shoe
+											  </div>
+											  <div class="slider3">
+												<figure data-color="#E24938, #A30F22,$530,third">
+												  <img src="1.jpg" />
+												  <div class="desc-rating">Men'sng shoe</div>
+												  <div class="desc-title">Men'sng shoe</div>
+												  <div class="descs">Men'sng shoe</div>
+												  <div class="price3" id="price3">$530</div>
+												</figure>
+												<figure data-color="#6CD96A, #00986F,$730,third">
+												  <img src="2.jpg" />
+												  <div class="desc">
+												Men's training shoe
+											  </div><div class="price3" id="price3">$730</div>
+												</figure>
+												<figure data-color="#4795D1, #006EB8,$630,third">
+												  <img src="3.jpg" />
+												  <div class="price3" id="price3">$630</div>
+												</figure>
+												<figure data-color="#292a2f, #131519,$230,third">
+												  <img src="4.jpg" />
+												  <div class="price3" id="price3">$230</div>
+												</figure>
+
+											  </div>
+
+											  <div class="cta">
+												<div class="price33" id="price33"></div>
+												<button class="btn3">Add to cart<span class="bg3"></span></button>
+											  </div>
+											</div>
+                        </div>
+						 <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="shop-card">
+											  <div class="title">
+												Nike Metcon 2
+											  </div>
+											  <div class="desc">
+												Men's training shoe
+											  </div>
+											  <div class="slider4">
+												<figure data-color="#E24938, #A30F22,$530,fourth">
+												  <img src="1.jpg" />
+												  <div class="desc-rating">Men'sng shoe</div>
+												  <div class="desc-title">Men'sng shoe</div>
+												  <div class="descs">Men'sng shoe</div>
+												  <div class="price4" id="price4">$530</div>
+												</figure>
+												<figure data-color="#6CD96A, #00986F,$73430,fourth">
+												  <img src="2.jpg" />
+												  <div class="desc">
+												Men's training shoe
+											  </div><div class="price4" id="price4">$730</div>
+												</figure>
+												<figure data-color="#4795D1, #006EB8,$634330,fourth">
+												  <img src="4.jpg" />
+												  <div class="price4" id="price4">$630</div>
+												</figure>
+												<figure data-color="#292a2f, #131519,$24330,fourth">
+												  <img src="4.jpg" />
+												  <div class="price4" id="price4">$230</div>
+												</figure>
+
+											  </div>
+
+											  <div class="cta">
+												<div class="price44" id="price44"></div>
+												<button class="btn4">Add to cart<span class="bg4"></span></button>
+											  </div>
+											</div>
+                        </div>
+						<div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="shop-card">
+											  <div class="title">
+												Nike Metcon 2
+											  </div>
+											  <div class="desc">
+												Men's training shoe
+											  </div>
+											  <div class="slider5">
+												<figure data-color="#E24938, #A30F22,$50,fifth">
+												  <img src="1.jpg" />
+												  <div class="desc-rating">Men'sng shoe</div>
+												  <div class="desc-title">Men'sng shoe</div>
+												  <div class="descs">Men'sng shoe</div>
+												  <div class="price5" id="price5">$530</div>
+												</figure>
+												<figure data-color="#6CD96A, #00986F,$30,fifth">
+												  <img src="2.jpg" />
+												  <div class="desc">
+												Men's training shoe
+											  </div><div class="price5" id="price5">$730</div>
+												</figure>
+												<figure data-color="#4795D1, #006EB8,$6340,fifth">
+												  <img src="4.jpg" />
+												  <div class="price5" id="price5">$630</div>
+												</figure>
+												<figure data-color="#292a2f, #131519,$6330,fifth">
+												  <img src="4.jpg" />
+												  <div class="price5" id="price5">$230</div>
+												</figure>
+
+											  </div>
+
+											  <div class="cta">
+												<div class="price55" id="price55"></div>
+												<button class="btn5">Add to cart<span class="bg5"></span></button>
+											  </div>
+											</div>
+                        </div>
+						<div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="shop-card">
+											  <div class="title">
+												Nike Metcon 2
+											  </div>
+											  <div class="desc">
+												Men's training shoe
+											  </div>
+											  <div class="slider6">
+												<figure data-color="#E24938, #A30F22,$779,sixth">
+												  <img src="1.jpg" />
+												  <div class="desc-rating">Men'sng shoe</div>
+												  <div class="desc-title">Men'sng shoe</div>
+												  <div class="descs">Men'sng shoe</div>
+												  <div class="price6" id="price6">$530</div>
+												</figure>
+												<figure data-color="#6CD96A, #00986F,$768,sixth">
+												  <img src="2.jpg" />
+												  <div class="desc">
+												Men's training shoe
+											  </div><div class="price6" id="price6">$730</div>
+												</figure>
+												<figure data-color="#4795D1, #006EB8,$830,sixth">
+												  <img src="4.jpg" />
+												  <div class="price6" id="price6">$630</div>
+												</figure>
+												<figure data-color="#292a2f, #131519,$2440,sixth">
+												  <img src="4.jpg" />
+												  <div class="price6" id="price6">$230</div>
+												</figure>
+
+											  </div>
+
+											  <div class="cta">
+												<div class="price66" id="price66"></div>
+												<button class="btn6">Add to cart<span class="bg6"></span></button>
+											  </div>
+											</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</section>
+<section class="site-title client">
+			<div class="site-background" data-aos="fade-up" data-aos-delay="100">
+				<div class="container">
+					<div class="row">
+                    <div class="col-lg-12 text-center client-text">
+					<h1 class="brush-text ">Client Testimonies</h1>
+					<img src="Brush.svg">
+					<p class="bush-under">Try our Most Delicious food and drinks, it usually take minutes to deliver!</p>
+					</div>
+				</div>
+				</div>
+			</div>
+</section>
+<section class="boxx">
+            <div class="container-fluid">
+                <div class="row ">
+				<div class="b-list">
+				<div class="container services-list">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="box">
+                                <div class="box-img text-center py-4">
+                                    <img src="{% static '/img/food.svg' %}" alt="Services-1">
+                                </div>
+
+                                <div class="text-center">
+                                    <h4 class="box-title">Variety of <br> dishes</h4>
+
+                                </div>
+								<div class="line text-center"></div>
+								<div class="box-text text-center">
+                                    <h4 class="card-title ">In our menu you’ll find a wide variety of dishes,
+									desserts, and drinks.</h4>
+
+                                </div>
+                            </div>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="box">
+
+                                <div class="box-img text-center py-4">
+                                    <img src="{% static './img/30mini.svg' %}" alt="Services-1">
+                                </div>
+
+                                <div class="text-center">
+                                    <h4 class="box-title ">30 minutes <br> deliver</h4>
+
+                                </div>
+								<div class="line text-center"></div>
+								<div class="box-text text-center">
+                                    <h4 class="card-title ">Everything you order will be quickly delivered to your door.</h4>
+
+                                </div>
+                            </div>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="box">
+
+                                <div class="box-img text-center py-4">
+                                    <img src="{% static './img/chef.svg' %}" alt="Services-1">
+                                </div>
+
+                                <div class="text-center">
+                                    <h4 class="box-title">Free shipping on <br> first order</h4>
+
+                                </div>
+								<div class="line text-center"></div>
+								<div class="box-text text-center">
+                                    <h4 class="card-title">Sign up for updates and get free shipping</h4>
+
+                                </div>
+                            </div>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="box">
+
+                                <div class="box-img text-center py-4">
+                                    <img src="{% static './img/bread.svg' %}" alt="Services-1">
+                                </div>
+
+                                <div class="text-center">
+                                    <h4 class="box-title">Best quality <br> guarantee</h4>
+
+                                </div>
+								<div class="line text-center"></div>
+								<div class="box-text text-center">
+                                    <h4 class="card-title ">Everything you order will be quickly delivered to your door.</h4>
+
+                                </div>
+                            </div>
+							</div>
+                        </div>
+						</div>
+						</div>
+					</div>
+				</div>
+
+</section>
+
+
+</main>
+
+<footer class="footer">
+        <div class="container-fluid">
+          <div class="row justify-content-center row-30">
+            <div class="col-md-10 col-lg-12 col-xl-4" style="visibility: visible; animation-name: fadeInRight;">
+              <div class="foots">
+                <div class="footer-image"><a href="burger.svg">
+				<img src="burger.svg" alt="" width="191" height="52"></a>
+				</div>
+                <p class="text-width-medium our">Our company has been delivering delicious shawarma since 2019. We have renowned professionals who makes sure its gets to your door-step.</p>
+                 <div>
+				  <h4 class="footer-address"><img src="{% static './img/telephone.svg' %}" style="float:left" width="40" height="40">08102186232<br>08102186232</h4>
+				 <br><br>
+				 <h4 class="footer-address"><img src="{% static './img/clock.svg' %}" style="float:left" width="40" height="40">mon-sat:9:00am-7pm | <br>sun: 12.00 – 7pm</h4>
+				 <br><br>
+
+				 <h4 class="footer-address"><img src="{% static './img/location.svg' %}" style="float:left" width="40" height="40">24/40 Chime Avenue,<br> New Heaven Enugu.</h4>
+				 <br>
+				 </div>
+				 <br>
+                <ul class="footer-table">
+                  <li><a class="" href="#"><img src="{% static './img/whatsapp.svg' %}"></a></li>
+                  <li><a class="" href="#"><img src="{% static './img/instagram.svg' %}"></a></li>
+                  <li><a class="" href="#"><img src="{% static './img/twitter.svg' %}"></a></li>
+                  <li><a class="" href="#"><img src="{% static './img/facebook.svg' %}"></a></li>
+                </ul>
+              </div>
+            </div>
+
+
+			<div class="col-md-10 col-lg-6 col-xl-4">
+			<h2 class="footer-title">Usefull Links</h2>
+
+				  <img class="footer-brush" src="./static/img/Brush.svg">
+			<table style="width:100%">
+			<tr>
+			<th></th>
+			<th></th>
+			</tr>
+			<tr>
+			<td>Home</td>
+			<td>Menu</td>
+			</tr>
+			<tr>
+
+			<td>Testimonials</td>
+			<td>Contact</td>
+			</tr>
+			<tr>
+			<td>Order Now</td>
+			<td>Services</td>
+			</tr>
+
+			</table>
+
+			</div>
+			<div class="col-md-10 col-lg-6 col-xl-4" >
+
+			<h2 class="footer-title">Instagram Posts</h2>
+
+				  <img class="footer-brush" src="./static/img/Brush.svg">
+
+
+			</div>
+
+          </div>
+        </div>
+        <div class="container footer-bottom-panel wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+          <!-- Rights-->
+          <p class="rights"><span>©&nbsp;</span><span class="copyright-year">2020</span> <span>UCBI_NATION</span>. All rights reserved. <a href="https://livedemo00.template-help.com/wt_prod-18959/privacy-policy.html"> Privacy Policy.</a>
+          </p>
+        </div>
+      </footer>
+
+
+	<!-- Jquery Library file -->
+    <script src="{% static './js/Jquery3.4.1.min.js' %}"></script>
+<script src="{% static './js/bootstrap.min.js' %}"></script>
+    <!-- --------- Owl-Carousel js ------------------->
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/classnames/2.2.5/index.min.js'></script>
+<script  src="{% static './js/slide.js' %}"></script>
+    <!-- Custom Javascript file -->
+    <script src="{% static './js/main.js"></script>
+	<!--card script -->
+ <script src="{% static 'jquery.min.js' %}"></script>
+<script src="{% static './js/slick.min.js' %}"></script>
+<script  src="{% static './js/script.js' %}"></script>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+	<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+</body>
+</html>

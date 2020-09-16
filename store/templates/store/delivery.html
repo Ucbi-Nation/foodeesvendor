@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for list in lis %}
+		<div class="col-lg-4">
+
+			<div class="box-element product">
+				<h6>{{list.id}} Customer: {{list.customer}}</strong></h6>
+				<h6>Date:<strong>{{list.date_added}}</strong></h6>
+                <h6>address:<strong>{{list.address}}</strong></h6>
+
+                <h6>details:<strong>{{list.detail}}</strong></h6>
+				<h6>status:<strong>{{list.status}}</strong></h6>
+
+      <form method="post" action="{% url 'delivery' %}">
+      {% csrf_token %}
+		  <input type="hidden" name="id" value="{{list.id}}">
+      <li class="">
+        <button type="submit" name="delivery" class="btn btn-primary">Mark complete</button>
+        </li>
+      </form>
+
+
+				<hr>
+
+
+
+
+			</div>
+		</div>
+		{% endfor %}
+<p>ueugfoiegfoiewfph</p>
+</body>
+</html>
